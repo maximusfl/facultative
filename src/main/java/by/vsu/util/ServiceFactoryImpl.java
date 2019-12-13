@@ -10,7 +10,7 @@ import by.vsu.service.impl.TeacherServiceImpl;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ServiceFactoryImpl implements ServiseFactory {
+public class ServiceFactoryImpl implements ServiceFactory {
    private Connection connection;
 
    @Override

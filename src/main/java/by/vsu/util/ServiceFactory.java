@@ -7,7 +7,7 @@ import by.vsu.service.Transaction;
 
 import java.sql.Connection;
 
-public interface ServiseFactory extends AutoCloseable {
+public interface ServiceFactory extends AutoCloseable {
 
     TeacherService getTeacherService() throws FactoryException;
 

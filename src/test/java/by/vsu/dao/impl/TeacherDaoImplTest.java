@@ -61,7 +61,7 @@ public class TeacherDaoImplTest {
     }
 
     @Test
-    @ThreadCount(400)
+    @ThreadCount(70)
         public void testTeacherServiceRead() throws FactoryException {
         ServiceFactoryImpl serviceFactory = new ServiceFactoryImpl();
         TeacherService teacherService = serviceFactory.getTeacherService();
@@ -76,7 +76,7 @@ public class TeacherDaoImplTest {
     }
 
     @Test
-    @ThreadCount(500)
+    @ThreadCount(70)
     public void testTeacherServiceRead2() throws FactoryException {
         ServiceFactoryImpl serviceFactory = new ServiceFactoryImpl();
         TeacherService teacherService = serviceFactory.getTeacherService();

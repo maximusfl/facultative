@@ -5,27 +5,38 @@ import java.util.List;
 
 public class Course implements Serializable {
 
-    private int id;
+    private Long id;
     private Teacher teacher;
+    private String courseName;
     private List<Student> students;
 
     public Course() {
     }
 
-    public Course(Teacher teacher, List<Student> students) {
+    public Course(Long id, Teacher teacher, String courseName, List<Student> students) {
+        this.id = id;
         this.teacher = teacher;
+        this.courseName = courseName;
         this.students = students;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-        public Teacher getTeacher() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public Teacher getTeacher() {
         return teacher;
     }
 
@@ -44,7 +55,9 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "Course{" +
-                "teacher=" + teacher +
+                "id=" + id +
+                ", teacher=" + teacher +
+                ", courseName='" + courseName + '\'' +
                 ", students=" + students +
                 '}';
     }

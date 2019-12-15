@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class RegisteredUser implements Serializable {
 
-    private int id;
+    private Long id;
     private String login;
     private String password;
     private Role role;
@@ -18,11 +18,11 @@ public class RegisteredUser implements Serializable {
         this.role = role;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

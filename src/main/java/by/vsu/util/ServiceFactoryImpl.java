@@ -1,8 +1,16 @@
 package by.vsu.util;
+import by.vsu.dao.CourseDao;
+import by.vsu.dao.RegistredUserDao;
 import by.vsu.dao.TeacherDao;
+import by.vsu.dao.impl.CourseDaoImpl;
+import by.vsu.dao.impl.RegistredUserDaoImpl;
 import by.vsu.dao.impl.TeacherDaoImpl;
+import by.vsu.service.CourseServise;
+import by.vsu.service.RegistredUserService;
 import by.vsu.service.TeacherService;
 import by.vsu.service.Transaction;
+import by.vsu.service.impl.CourseServiseImpl;
+import by.vsu.service.impl.RegistredUserServiceImpl;
 import by.vsu.service.impl.TransactionImpl;
 
 import by.vsu.service.impl.TeacherServiceImpl;
@@ -13,7 +21,38 @@ import java.sql.SQLException;
 public class ServiceFactoryImpl implements ServiceFactory {
    private Connection connection;
 
-   @Override
+    @Override
+    public CourseServise getCourseServise() throws FactoryException {
+        CourseServiseImpl courseServise = new CourseServiseImpl();
+        courseServise.setCourseDao(getCourseDao());
+        courseServise.setTransaction(getTransaction());
+        return courseServise;
+    }
+
+    @Override
+    public CourseDao getCourseDao() throws FactoryException {
+        CourseDaoImpl courseDao = new CourseDaoImpl();
+        courseDao.setConnection(getConnection());
+        return courseDao;
+    }
+
+    @Override
+    public RegistredUserService getRegistredUserService() throws FactoryException{
+        RegistredUserServiceImpl userService = new RegistredUserServiceImpl();
+        userService.setDefaultPassword("12345");
+        userService.setTransaction(getTransaction());
+        userService.setUserDao(getRegistredUserDao());
+        return userService;
+    }
+
+    @Override
+    public RegistredUserDao getRegistredUserDao() throws FactoryException {
+        RegistredUserDaoImpl registredUserDao = new RegistredUserDaoImpl();
+        registredUserDao.setConnection(getConnection());
+        return registredUserDao;
+    }
+
+    @Override
     public TeacherService getTeacherService() throws FactoryException {
        TeacherServiceImpl teacherService = new TeacherServiceImpl();
        teacherService.setTeacherDao(getTeacherDao());

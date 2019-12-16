@@ -22,12 +22,25 @@ public class CourseServiseImpl extends EnableTransactionService implements Cours
 
     @Override
     public Course findById(Long id) throws ServiceException {
-        return null;
+        try {
+            return courseDao.read(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public void save(Course course) throws ServiceException {
+        try {
+            getTransaction().start();
+                courseDao.create(course);
 
+
+            getTransaction().commit();
+        } catch(DaoException e) {
+            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+            throw new ServiceException(e);
+        }
     }
 
     @Override

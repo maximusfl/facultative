@@ -26,11 +26,14 @@ public class MainAction extends Action {
                 logger.info("userRole: "+user.getRole());
                 switch (user.getRole()) {
                     case ADMIN:
-                        return new Forward("/registreduser/userlist");
+                        logger.info("case: admin");
+                        return new Forward("/admin/adminhomepage");
                     case TEACHER:
-                        return new Forward("/");
+                        logger.info("case: teacher");
+                        return new Forward("/teacher/teacherhomepage");
                     case STUDENT:
-                        return new Forward("/");
+                        logger.info("case: student");
+                        return new Forward("/student/studenthomepage");
 
                     default:
                         return new Forward("/login");

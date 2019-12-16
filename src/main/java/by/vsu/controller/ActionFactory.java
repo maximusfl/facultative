@@ -1,6 +1,6 @@
 package by.vsu.controller;
 
-import by.vsu.controller.course.AllCoursesAction;
+import by.vsu.controller.course.*;
 import by.vsu.controller.registreduser.RegistredUserSaveAction;
 import by.vsu.controller.teacher.TeacherViewAction;
 
@@ -17,6 +17,10 @@ public class ActionFactory {
         actions.put("/", MainAction.class);
         actions.put("/index",MainAction.class);
         actions.put("/login",LoginAction.class);
+        actions.put("/admin/editcourses", EditCoursesAction.class);
+        actions.put("/admin/editsinglecourse", EditSingleCourseAction.class);
+        actions.put("/admin/addcourse", AddCourseAction.class);
+        actions.put("/admin/savecourse", SaveCourseAction.class);
         actions.put("/allcourses", AllCoursesAction.class);
         actions.put("/teacher/view", TeacherViewAction.class);
         actions.put("/user/save", RegistredUserSaveAction.class);

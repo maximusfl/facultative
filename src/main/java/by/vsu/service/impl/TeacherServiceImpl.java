@@ -38,7 +38,22 @@ public class TeacherServiceImpl extends EnableTransactionService implements Teac
 
     @Override
     public List<Teacher> findAll() throws ServiceException {
-        return null;
+        try {
+            getTransaction().start();
+            List<Teacher> teachers = teacherDao.readAll();
+            if(teachers != null){
+                getTransaction().commit();
+
+            }
+            return teachers;
+        }catch(DaoException e) {
+            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+            throw new ServiceException(e);
+        } catch(ServiceException e) {
+            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+            throw e;
+        }
+
     }
 
     @Override

@@ -26,9 +26,11 @@ public class SecurityFilter implements Filter {
         Set<Role> students = new HashSet<>();
         students.add(Role.STUDENT);
 
+
         permissions.put("/logout", all);
-        permissions.put("/allcourses", students);
-        permissions.put("/registreduser/userlist", admin);
+        permissions.put("/allcourses", all);
+        permissions.put("/admin/adminhomepage", admin);
+        permissions.put("/",all);
 
     }
 
@@ -75,7 +77,8 @@ public class SecurityFilter implements Filter {
             return;
         }
         logger.info("roles in secFilter: "+roles.toArray());
-        httpServletResponse.sendRedirect(context + "/login.html?message=login.message.access.denied");
+
+        httpServletResponse.sendRedirect(context + "/login.html?message=you do not have enough permissions");
     }
 
     @Override

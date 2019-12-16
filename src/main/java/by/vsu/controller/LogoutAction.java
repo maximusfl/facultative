@@ -13,6 +13,6 @@ public class LogoutAction extends Action {
         if (session != null) {
             session.invalidate();
         }
-        return new Forward("/index.html");
+        return new Forward("/login");
     }
 }

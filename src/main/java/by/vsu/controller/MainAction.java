@@ -27,6 +27,7 @@ public class MainAction extends Action {
                 switch (user.getRole()) {
                     case ADMIN:
                         logger.info("case: admin");
+                        request.setAttribute("role", user.getRole());
                         return new Forward("/admin/adminhomepage");
                     case TEACHER:
                         logger.info("case: teacher");

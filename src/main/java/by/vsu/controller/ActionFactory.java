@@ -17,6 +17,7 @@ public class ActionFactory {
         actions.put("/", MainAction.class);
         actions.put("/index",MainAction.class);
         actions.put("/login",LoginAction.class);
+        actions.put("/logout",LogoutAction.class);
         actions.put("/admin/editcourses", EditCoursesAction.class);
         actions.put("/admin/editsinglecourse", EditSingleCourseAction.class);
         actions.put("/admin/addcourse", AddCourseAction.class);

@@ -30,6 +30,7 @@ public class LoginAction extends Action {
                     HttpSession session = request.getSession();
                     logger.info("created httpSession: "+session+" with userRole: "+ registeredUser.getRole());
                     session.setAttribute("currentUser", registeredUser);
+                    request.setAttribute("role", registeredUser.getRole());
                     return new Forward("/index");
                 } else {
                     return new Forward("/login");

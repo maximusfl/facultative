@@ -3,7 +3,7 @@
 
 <div class="text-center">
 <p>
-<h3  >running courses <a class="btn float-right btn-primary" href="${pageContext.request.contextPath}/admin/addcourse.html" role="button">add new course</a></h3>
+<h3  >running courses <a class="btn float-right btn-primary" href="${pageContext.request.contextPath}/admin/addcourse" role="button">add new course</a></h3>
     </p>
 </div>
 <table class="table">
@@ -20,7 +20,7 @@
             <th scope="row">${course.id}</th>
 
             <td>
-                <a href="${pageContext.request.contextPath}/admin/editsinglecourse.html?course_id=${course.id}">${course.courseName}</a>
+                <a href="${pageContext.request.contextPath}/admin/editsinglecourse?course_id=${course.id}">${course.courseName}</a>
             </td>
 
 

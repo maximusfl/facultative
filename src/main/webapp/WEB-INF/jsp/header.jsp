@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/allcourses.html">courses<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/allcourses">courses<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -32,7 +32,7 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item active">
 
-                        <a class="nav-link" href="${pageContext.request.contextPath}/logout.html">LogOut</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">LogOut</a>
                     </li>
                 </ul>
             </div>

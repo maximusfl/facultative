@@ -45,7 +45,7 @@ public class SecurityFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
         String url = httpServletRequest.getRequestURI();
         String context = httpServletRequest.getContextPath();
-        int postfixindex = url.lastIndexOf(".html");
+        int postfixindex = url.lastIndexOf(".jsp");
         logger.info("called SecurityFilter");
         if(postfixindex != -1){
             logger.info("postfixIndex != -1 securityFilter prosessing url: "+url);
@@ -78,7 +78,7 @@ public class SecurityFilter implements Filter {
         }
         logger.info("roles in secFilter: "+roles.toArray());
 
-        httpServletResponse.sendRedirect(context + "/login.html?message=you do not have enough permissions");
+        httpServletResponse.sendRedirect(context + "/login?message=you do not have enough permissions");
     }
 
     @Override

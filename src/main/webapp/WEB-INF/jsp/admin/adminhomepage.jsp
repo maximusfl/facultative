@@ -7,7 +7,7 @@
 </div>
 
 <p>
-    <a class="btn btn-secondary btn-lg btn-block" href="${pageContext.request.contextPath}/admin/editcourses.html" role="button">course managment</a>
+    <a class="btn btn-secondary btn-lg btn-block" href="${pageContext.request.contextPath}/admin/editcourses" role="button">course managment</a>
 </p>
 <p>
     <a class="btn btn-secondary btn-lg btn-block" href="#" role="button">teacher managment</a>

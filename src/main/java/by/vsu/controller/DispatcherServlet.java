@@ -44,16 +44,24 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("process start!");
         String url = request.getRequestURI();
+        logger.info("url in request: "+url);
         String context = request.getContextPath();
-        int postfixIndex = url.lastIndexOf(".html");
+        logger.info("context in request: "+ context);
+        int postfixIndex = url.lastIndexOf(".jsp");
+
         if(postfixIndex !=-1){
             url = url.substring(context.length(), postfixIndex);
+            logger.info("postfixIndex !=-1: url: "+url);
 
         }else {
             url = url.substring(context.length());
+            logger.info("url without prefix! " +" url "+url);
         }
+        logger.info("trying to create Action class...");
         Action action = ActionFactory.getAction(url);
+        logger.info("will return Action: "+action.getClass().getSimpleName()+" by url: "+url);
         Forward forward = null;
         if(action != null){
             try(ServiceFactory factory = getServiceFactory()){

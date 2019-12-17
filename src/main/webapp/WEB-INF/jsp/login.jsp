@@ -3,7 +3,7 @@
 
 
 <div style="padding-left: 50px">
-    <form action="${pageContext.request.contextPath}/login.html" method="POST">
+    <form action="${pageContext.request.contextPath}/login" method="POST">
 
         <label for="login">login</label>
         <div class="form-group w-25">

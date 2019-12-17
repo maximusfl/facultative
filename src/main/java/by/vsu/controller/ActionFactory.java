@@ -5,6 +5,7 @@ import by.vsu.controller.registreduser.RegistredUserSaveAction;
 import by.vsu.controller.teacher.TeacherViewAction;
 
 import javax.servlet.ServletException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -35,9 +36,11 @@ public class ActionFactory {
         logger.info("try to process url: "+url);
         if( action != null){
             try {
-                logger.info("will retunr action: "+action.newInstance().getClass().getSimpleName());
-                return (Action) action.newInstance();
-            }catch (InstantiationException | IllegalAccessException | NullPointerException e){
+                logger.info("will have been retun action: "+action.getSimpleName());
+
+                return (Action) action.getDeclaredConstructor().newInstance();
+
+            }catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | InstantiationException e){
                 throw new ServletException(e);
             }
         }else  {

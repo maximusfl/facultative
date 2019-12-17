@@ -40,11 +40,13 @@ public class MainAction extends Action {
                         return new Forward("/login");
                 }
             } else {
-                logger.info("user is null, will return forward to /login");
+                logger.info("user is null, will return forward to /login rom preLAST else");
+                request.setAttribute("message","you do not have enough permissions");
                 return new Forward("/login");
             }
         } else {
-            logger.info("session is null will return forward to /login");
+            logger.info("session is null will return forward to /login flom LAST else");
+
             return new Forward("/login");
         }
     }

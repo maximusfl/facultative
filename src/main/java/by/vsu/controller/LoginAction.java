@@ -33,6 +33,7 @@ public class LoginAction extends Action {
                     request.setAttribute("role", registeredUser.getRole());
                     return new Forward("/index");
                 } else {
+                    request.setAttribute("message", "incorrect login or password");
                     return new Forward("/login");
                 }
             } catch (FactoryException | ServiceException e) {

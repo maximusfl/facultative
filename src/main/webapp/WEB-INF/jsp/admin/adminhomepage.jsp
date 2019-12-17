@@ -13,5 +13,9 @@
     <a class="btn btn-secondary btn-lg btn-block" href="#" role="button">teacher managment</a>
 </p>
 
+<p>
+    <a class="btn btn-secondary btn-lg btn-block" href="#" role="button">student managment</a>
+</p>
+
 
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

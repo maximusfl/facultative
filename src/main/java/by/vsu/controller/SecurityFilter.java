@@ -65,7 +65,7 @@ public class SecurityFilter implements Filter {
                 RegisteredUser user = (RegisteredUser) session.getAttribute("currentUser");
                 logger.info("user in secFilter: "+user);
                 if(user != null && roles.contains(user.getRole())){
-                    logger.info("will do process for userRole:: "+user.getRole());
+                    logger.info("will do process for userRole: "+user.getRole());
                     filterChain.doFilter(httpServletRequest, httpServletResponse);
 
                     return;

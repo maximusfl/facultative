@@ -1,8 +1,9 @@
 package by.vsu.controller;
 
 import by.vsu.controller.course.*;
-import by.vsu.controller.registreduser.RegistredUserSaveAction;
-import by.vsu.controller.teacher.TeacherViewAction;
+//import by.vsu.controller.registreduser.RegistredUserSaveAction;
+import by.vsu.controller.student.*;
+import by.vsu.controller.teacher.*;
 
 import javax.servlet.ServletException;
 import java.lang.reflect.InvocationTargetException;
@@ -25,7 +26,33 @@ public class ActionFactory {
         actions.put("/admin/savecourse", SaveCourseAction.class);
         actions.put("/allcourses", AllCoursesAction.class);
         actions.put("/teacher/view", TeacherViewAction.class);
-        actions.put("/user/save", RegistredUserSaveAction.class);
+//        actions.put("/user/save", RegistredUserSaveAction.class);
+        actions.put("/admin/delstudfromcourse", RemoveStudentFromCourseAction.class);
+        actions.put("/admin/addstudtocourse", AddStudentToCourseAction.class);
+        actions.put("/admin/changeteacher",ChangeTeacherAction.class);
+        actions.put("error",ErrorAction.class);
+        actions.put("/admin/removecourse",RemoveCourseAction.class);
+        actions.put("/admin/editteacherspage", EditTeachersAction.class);
+        actions.put("/admin/addteacher", AddTeacherAction.class);
+        actions.put("/admin/createteacheraccount", CreateTeacherAccount.class);
+        actions.put("/admin/removeteacher", RemoveTeacherAction.class);
+        actions.put("/admin/removeteacheraccount", RemoveTeacherAccountAction.class);
+        actions.put("/admin/edit_student_page", EditStudentsAction.class);
+        actions.put("/admin/addstudent", AddStudentAction.class);
+        actions.put("/admin/create_student_account", CreateStudentAccountAction.class);
+        actions.put("/admin/remove_student", RemoveStudentAction.class);
+        actions.put("/admin/remove_student_account", RemoveStudentAccountAction.class);
+        actions.put("/student/my_courses", MyCoursesStudentAction.class);
+        actions.put("/student/single_course", MyCourseAction.class);
+        actions.put("/student/take_course", AddMyCourseAction.class);
+        actions.put("/student/remove_my_course", RemoveMyCourseAction.class);
+        actions.put("/teacher/my_courses", MyCoursesTeacherAction.class);
+        actions.put("/teacher/single_course", SingleCoueseTeacherAction.class);
+        actions.put("/teacher/add_raiting", AddRaitingAction.class);
+
+
+
+
 
 
     }

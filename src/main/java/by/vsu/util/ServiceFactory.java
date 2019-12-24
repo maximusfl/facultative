@@ -2,12 +2,10 @@ package by.vsu.util;
 
 import by.vsu.dao.CourseDao;
 import by.vsu.dao.RegistredUserDao;
+import by.vsu.dao.StudentDao;
 import by.vsu.dao.TeacherDao;
 
-import by.vsu.service.CourseServise;
-import by.vsu.service.RegistredUserService;
-import by.vsu.service.TeacherService;
-import by.vsu.service.Transaction;
+import by.vsu.service.*;
 
 import java.sql.Connection;
 
@@ -20,6 +18,10 @@ public interface ServiceFactory extends AutoCloseable {
     TeacherDao getTeacherDao() throws FactoryException;
 
     Connection getConnection() throws FactoryException;
+
+    StudentService getStudentService() throws FactoryException;
+
+    StudentDao getStudentDao() throws FactoryException;
 
     RegistredUserService getRegistredUserService() throws FactoryException;
 

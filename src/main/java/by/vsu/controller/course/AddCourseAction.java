@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class AddCourseAction extends Action {
     private static Logger logger = Logger.getLogger("AddcourseAction");
     @Override
-    public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             logger.info("called AddcourseAction");
             TeacherService service = getServiceFactory().getTeacherService();

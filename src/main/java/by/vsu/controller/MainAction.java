@@ -1,5 +1,6 @@
 package by.vsu.controller;
 
+import by.vsu.pojo.Course;
 import by.vsu.pojo.RegisteredUser;
 import by.vsu.pojo.Role;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class MainAction extends Action {
@@ -21,9 +23,9 @@ public class MainAction extends Action {
             RegisteredUser user = (RegisteredUser) session.getAttribute("currentUser");
 
 
-            logger.info("currentUser: "+user);
+            logger.info("currentUser: " + user);
             if (user != null) {
-                logger.info("userRole: "+user.getRole());
+                logger.info("userRole: " + user.getRole());
                 switch (user.getRole()) {
                     case ADMIN:
                         logger.info("case: admin");
@@ -41,7 +43,7 @@ public class MainAction extends Action {
                 }
             } else {
                 logger.info("user is null, will return forward to /login rom preLAST else");
-                request.setAttribute("message","you do not have enough permissions");
+                request.setAttribute("message", "you do not have enough permissions");
                 return new Forward("/login");
             }
         } else {

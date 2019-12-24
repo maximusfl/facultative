@@ -14,7 +14,7 @@
             <input type="text" name="password" class="form-control" id="password" aria-describedby="basic-addon3"
                    required>
         </div>
-        <button type="submit" class="btn btn-primary">signIn</button>
+        <button type="submit" class="btn btn-primary">sign In</button>
     </form>
 
     <p>

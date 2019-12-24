@@ -58,11 +58,47 @@ public class TeacherServiceImpl extends EnableTransactionService implements Teac
 
     @Override
     public void save(Teacher teacher) throws ServiceException {
+        try {
+            getTransaction().start();
+            teacherDao.create(teacher);
 
+
+            getTransaction().commit();
+        } catch(DaoException e) {
+            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public void delete(Long id) throws ServiceException {
+        try {
+            getTransaction().start();
+            teacherDao.delete(id);
+            getTransaction().commit();
+        } catch(DaoException e) {
+            throw new ServiceException(e);
+        }
 
+    }
+
+    @Override
+    public Teacher findByCourseId(Long id) throws ServiceException {
+
+            try {
+                getTransaction().start();
+                Teacher teacher = teacherDao.readByCourseId(id);
+                if(teacher != null){
+                    getTransaction().commit();
+
+                }
+                return teacher;
+            }catch(DaoException e) {
+                try { getTransaction().rollback(); } catch(ServiceException e1) {}
+                throw new ServiceException(e);
+            } catch(ServiceException e) {
+                try { getTransaction().rollback(); } catch(ServiceException e1) {}
+                throw e;
+            }
     }
 }

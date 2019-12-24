@@ -44,8 +44,18 @@ public class SaveCourseAction  extends Action {
             try {
                 logger.info("saving course...");
                 CourseServise service = getServiceFactory().getCourseServise();
-                service.save(course);
                 List<Course> courses = service.findAll();
+                for(Course checkingCourse : courses){
+                    if(checkingCourse.getCourseName().equals(course.getCourseName())){
+request.setAttribute("errorMessage", "course with the same name already exists");
+return new Forward("/error");
+                    }
+                }
+                service.save(course);
+
+                courses=service.findAll();
+
+
                 request.setAttribute("courses", courses);
 
                 return new Forward("/admin/editcourses");

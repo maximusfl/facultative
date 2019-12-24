@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Student implements Serializable {
 
-    private  int id;
+    private  Long id;
     private String first_name;
     private String last_name;
     private List<Course> courses;
@@ -19,11 +19,11 @@ public class Student implements Serializable {
         this.courses = courses;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

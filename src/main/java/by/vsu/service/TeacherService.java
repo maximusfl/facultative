@@ -14,4 +14,5 @@ public interface TeacherService {
 
     void delete(Long id) throws  ServiceException;
 
+    Teacher findByCourseId(Long id) throws ServiceException;
 }

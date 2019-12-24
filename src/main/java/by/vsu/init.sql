@@ -18,7 +18,7 @@ CREATE TABLE `students` (
     PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARACTER SET utf8;
 
-CREATE TABLE `registred_users` (
+CREATE TABLE `registered_users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `login` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
@@ -54,23 +54,23 @@ ALTER TABLE `facultative`.`courses_students`
 ADD CONSTRAINT `courses_student_courses`
   FOREIGN KEY (`course_id`)
   REFERENCES `facultative`.`courses` (`id`)
-  ON DELETE NO ACTION
+  ON DELETE CASCADE
   ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_courses_students_students`
   FOREIGN KEY (`student_id`)
   REFERENCES `facultative`.`students` (`id`)
-  ON DELETE NO ACTION
+  ON DELETE CASCADE
   ON UPDATE NO ACTION;
 
 
-ALTER TABLE `facultative`.`registred_users`
-ADD CONSTRAINT `fk_registred_users_teachers`
+ALTER TABLE `facultative`.`registered_users`
+ADD CONSTRAINT `fk_registered_users_teachers`
   FOREIGN KEY (`teacher_id`)
   REFERENCES `facultative`.`teachers` (`id`)
-  ON DELETE NO ACTION
+  ON DELETE CASCADE
   ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_registred_users_students`
+ADD CONSTRAINT `fk_registered_users_students`
   FOREIGN KEY (`student_id`)
   REFERENCES `facultative`.`students` (`id`)
-  ON DELETE NO ACTION
+  ON DELETE CASCADE
   ON UPDATE NO ACTION;

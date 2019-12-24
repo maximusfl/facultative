@@ -9,7 +9,8 @@
     <textarea class="form-control" name="coursename" id="exampleFormControlTextarea1" rows="1" required></textarea>
 </div>
 <div class="form-group">
-    <select name="teachers" class="form-control">
+    <label for="selectTeacher">Choose teacher</label>
+    <select name="teachers" class="form-control" id="selectTeacher">
         <c:forEach var="teacher" items="${teachers}">
             <option>
                ${teacher.id} ${teacher.last_name}

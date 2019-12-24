@@ -28,9 +28,9 @@ public class SecurityFilter implements Filter {
 
 
         permissions.put("/logout", all);
-        permissions.put("/allcourses", all);
+//        permissions.put("/allcourses", all);
         permissions.put("/admin/adminhomepage", admin);
-        permissions.put("/",all);
+//        permissions.put("/",all);
 
     }
 

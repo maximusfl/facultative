@@ -47,6 +47,43 @@ public class TeacherDaoImpl extends EnableConnectionDao implements TeacherDao {
     }
 
     @Override
+    public Teacher readByCourseId(Long id) throws DaoException {
+
+            String sql = "Select  teachers.first_name, teachers.last_name, teachers.id\n" +
+
+                    "From teachers Inner Join\n" +
+                    "  courses On courses.teacher_id = teachers.id\n" +
+                    "  where courses.id=?";
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+            try {
+                statement = getConnection().prepareStatement(sql);
+                statement.setLong(1, id);
+                resultSet = statement.executeQuery();
+                Teacher teacher = null;
+                if (resultSet.next()) {
+                    teacher = new Teacher();
+
+                    teacher.setFirst_name(resultSet.getString("first_name"));
+                    teacher.setLast_name(resultSet.getString("last_name"));
+                    teacher.setId(Long.parseLong(resultSet.getString("id")));
+                }
+                return teacher;
+            } catch (SQLException e) {
+                throw new DaoException(e);
+            } finally {
+                try {
+                    statement.close();
+                } catch (Exception e) {
+                }
+                try {
+                    resultSet.close();
+                } catch (Exception e) {
+                }
+            }
+    }
+
+    @Override
     public Teacher read(Long id) throws DaoException {
         String sql = "SELECT `first_name`, `last_name` FROM `teachers` WHERE `id` = ?";
         PreparedStatement statement = null;
@@ -109,5 +146,20 @@ public class TeacherDaoImpl extends EnableConnectionDao implements TeacherDao {
     @Override
     public void delete(Long id) throws DaoException {
 
+
+        String sql = "DELETE FROM `teachers` WHERE `id` = ?";
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch(SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            try{ statement.close(); } catch(Exception e) {}
+        }
     }
 }

@@ -30,7 +30,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active px-5">
-                <a class="nav-link" href="${pageContext.request.contextPath}/allcourses">all courses<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/all_courses">all courses<span
                         class="sr-only">(current)</span></a>
             </li>
 
@@ -38,53 +38,37 @@
             <c:if test="${sessionScope.currentUser.role == 'ADMIN'}">
                 <li class="nav-item active px-5">
                     <a class="nav-link"
-                       href="${pageContext.request.contextPath}/admin/editcourses">course-management</a>
+                       href="${pageContext.request.contextPath}/admin/edit_courses">course-management</a>
                 </li>
                 <li class="nav-item active px-5">
                     <a class="nav-link"
-                       href="${pageContext.request.contextPath}/admin/editteacherspage">teachers-management</a>
+                       href="${pageContext.request.contextPath}/admin/edit_teachers_page">teachers-management</a>
                 </li>
                 <li class="nav-item active px-5">
                     <a class="nav-link"
                        href="${pageContext.request.contextPath}/admin/edit_student_page">student-management</a>
                 </li>
             </c:if>
-
-
-
             <c:if test="${sessionScope.currentUser.role == 'STUDENT'}">
                 <li class="nav-item active px-5">
                     <a class="nav-link"
                        href="${pageContext.request.contextPath}/student/my_courses">my courses</a>
                 </li>
-
-
             </c:if>
-
             <c:if test="${sessionScope.currentUser.role == 'TEACHER'}">
                 <li class="nav-item active px-5">
                     <a class="nav-link"
                        href="${pageContext.request.contextPath}/teacher/my_courses">my courses</a>
                 </li>
-
-
             </c:if>
-
-
-
         </ul>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
                 <c:if test="${sessionScope.containsValue(currentUser)}">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">LogOut</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Sign Out</a>
                     </li>
                 </c:if>
-
-
-
-
-
             </ul>
         </div>
     </div>

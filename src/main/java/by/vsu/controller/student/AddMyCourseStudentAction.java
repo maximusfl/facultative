@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class AddMyCourseAction extends Action {
+public class AddMyCourseStudentAction extends Action {
     private static Logger logger = Logger.getLogger("AddMyCourseAction");
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +55,7 @@ public class AddMyCourseAction extends Action {
             request.setAttribute("myCoursesCount", myCourses.size());
             request.setAttribute("allCourses", allcourses);
             request.setAttribute("MyCoursesCount", myCourses.size());
-            return new Forward("/student/studenthomepage");
+            return new Forward("/student/student_home_page");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

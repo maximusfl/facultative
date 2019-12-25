@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class CreateStudentAccountAction extends Action {
+public class CreateAccountStudentAction extends Action {
     private static Logger logger = Logger.getLogger("CreateStudentAccount");
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -29,7 +29,7 @@ public class SecurityFilter implements Filter {
 
         permissions.put("/logout", all);
 //        permissions.put("/allcourses", all);
-        permissions.put("/admin/adminhomepage", admin);
+        permissions.put("/admin/admin_home_page", admin);
 //        permissions.put("/",all);
 
     }

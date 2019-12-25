@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class RemoveTeacherAccountAction extends Action {
+public class RemoveAccountTeacherAction extends Action {
 
     private static Logger logger = Logger.getLogger("RemoveTeacherAccountAction");
     @Override
@@ -55,7 +55,7 @@ public class RemoveTeacherAccountAction extends Action {
             request.setAttribute("teacherAccountsCount",teacherAccounts.size());
 
 
-            return new Forward("/admin/editteacherspage");
+            return new Forward("/admin/edit_teachers_page");
 
 
         } catch(FactoryException | ServiceException e) {

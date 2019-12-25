@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class TeacherViewAction extends Action {
+public class TeachersViewAction extends Action {
     private static Logger logger = Logger.getLogger("TeacherViewAction");
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

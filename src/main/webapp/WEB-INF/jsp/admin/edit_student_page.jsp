@@ -16,7 +16,7 @@
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#addstudent">
             add student
         </button>
-        <form action="${pageContext.request.contextPath}/admin/addstudent" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/add_student" method="POST">
             <div class="modal fade" id="addstudent" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

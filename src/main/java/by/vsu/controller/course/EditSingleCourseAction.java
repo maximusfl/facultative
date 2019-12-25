@@ -57,7 +57,7 @@ public class EditSingleCourseAction extends Action {
 
 
 
-            return new Forward("/admin/editsinglecourse");
+            return new Forward("/admin/edit_single_course");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

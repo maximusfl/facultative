@@ -64,7 +64,7 @@ public class RemoveTeacherAction extends Action {
             request.setAttribute("teachers", teachers);
             request.setAttribute("teachersCount", teachers.size());
 
-            return new Forward("/admin/editteacherspage");
+            return new Forward("/admin/edit_teachers_page");
 
 
         } catch(FactoryException | ServiceException e) {

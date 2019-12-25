@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class AddRaitingAction extends Action {
+public class AddRaitingTeacherAction extends Action {
     private static Logger logger = Logger.getLogger("AddRaitingAction");
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

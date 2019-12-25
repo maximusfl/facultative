@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class EditTeachersAction extends Action {
+public class EditTeachersPageAction extends Action {
     private static Logger logger = Logger.getLogger("EditTeachersAction");
 
     @Override
@@ -36,7 +36,7 @@ public class EditTeachersAction extends Action {
                 request.setAttribute("teachersCount", teachers.size());
                 request.setAttribute("teacherAccountsCount",teacherAccounts.size());
 
-                return new Forward("/admin/editteacherspage");
+                return new Forward("/admin/edit_teachers_page");
             } catch(FactoryException | ServiceException e) {
                 throw new ServletException(e);
             }

@@ -68,9 +68,11 @@
                     <div class="modal-body">
                         <div class="form-group">
 
+
+
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">balls</label>
-                                <textarea class="form-control" name="raiting" id="exampleFormControlTextarea1" rows="1" required></textarea>
+                                <input type="number" min="0" max="100" name="raiting" class="form-control" id="exampleFormControlTextarea1" aria-describedby="basic-addon3" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">resume</label>

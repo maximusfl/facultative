@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ChangeTeacherAction extends Action {
+public class ChangeTeacherOnCourseAction extends Action {
     private static Logger logger = Logger.getLogger("ChangeTeacherAction");
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,7 +59,7 @@ public class ChangeTeacherAction extends Action {
 
             request.setAttribute("teachers", teachers);
 
-            return new Forward("/admin/editsinglecourse");
+            return new Forward("/admin/edit_single_course");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

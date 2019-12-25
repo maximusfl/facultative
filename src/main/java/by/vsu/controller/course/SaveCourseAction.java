@@ -58,7 +58,7 @@ return new Forward("/error");
 
                 request.setAttribute("courses", courses);
 
-                return new Forward("/admin/editcourses");
+                return new Forward("/admin/edit_courses");
 
 
             } catch(FactoryException | ServiceException e) {
@@ -66,7 +66,7 @@ return new Forward("/error");
             }
         }
 
-        return new Forward("/admin/editcourses");
+        return new Forward("/admin/edit_courses");
     }
     }
 

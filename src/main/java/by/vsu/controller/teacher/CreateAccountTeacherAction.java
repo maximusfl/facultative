@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-public class CreateTeacherAccount extends Action {
+public class CreateAccountTeacherAction extends Action {
     private static Logger logger = Logger.getLogger("CreateTeacherAccount");
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,7 +75,7 @@ public class CreateTeacherAccount extends Action {
         } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
-        return new Forward("/admin/editteacherspage");
+        return new Forward("/admin/edit_teachers_page");
 
     }
 }

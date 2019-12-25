@@ -3,16 +3,12 @@
 <c:if test="${allCourses != null}">
     <div class="text-center">
         <hr class="my-4">
-
         <ul class="nav justify-content-center">
-
             <li class="nav-item">
-
                 <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal"
                         data-target="#take_a_course">
                     take a course
                 </button>
-
                 <form action="${pageContext.request.contextPath}/student/take_course" method="POST">
                     <div class="modal fade" id="take_a_course" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -32,10 +28,8 @@
                                                         ${myNewCourse.courseName}
                                                 </option>
                                             </c:forEach>
-
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -45,16 +39,9 @@
                         </div>
                     </div>
                 </form>
-
             </li>
-
-
             <li class="nav-item">
-
-
                 <c:if test="${MyCoursesCount > 0}">
-
-
                     <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal"
                             data-target="#removeMyCourse">
                         remove my course
@@ -79,7 +66,6 @@
                                                         ${course.courseName}
                                                 </option>
                                             </c:forEach>
-
                                         </select>
                                     </div>
                                 </div>
@@ -91,25 +77,15 @@
                         </div>
                     </div>
                 </form>
-
             </li>
-
-
         </ul>
-
-
         <hr class="my-4">
-
     </div>
-
     <c:if test="${myCoursesCount > 0}">
-
         <div class="text-center">
-
             <p>
             <div class="container py-3">
                 <div class="row">
-
                     <div class="mx-auto w-50 p-3 text-center">
                         <table class="table ">
                             <thead class="thead-light">
@@ -127,7 +103,6 @@
                             </c:forEach>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -135,9 +110,7 @@
         </p>
         </div>
     </c:if>
-
 </c:if>
-
 <c:if test="${allCourses == null}">
     <div class="jumbotron">
         <h1 class="display-4">Good luck!</h1>

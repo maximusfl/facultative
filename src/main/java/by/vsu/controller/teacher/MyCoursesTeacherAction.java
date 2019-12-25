@@ -18,28 +18,21 @@ import java.util.logging.Logger;
 
 public class MyCoursesTeacherAction extends Action {
     private static Logger logger = Logger.getLogger("MyCoursesStudentAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("called : MyCoursesStudentAction");
-        Long teacher_id =null;
-
-
-
-
+        Long teacher_id = null;
         try {
             RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
-
             RegisteredUser registeredUser = (RegisteredUser) request
                     .getSession(false)
                     .getAttribute("currentUser");
-
-            if(registeredUser != null){
+            if (registeredUser != null) {
                 teacher_id = registredUserService.getTeacherIdByregUserId(registeredUser.getId());
             }
-            logger.info("MyCoursesStudentAction has got teacher_id: "+teacher_id);
-
+            logger.info("MyCoursesStudentAction has got teacher_id: " + teacher_id);
             CourseServise courseServise = getServiceFactory().getCourseServise();
-
             List<Course> myCourses = courseServise.findAllTeachersCourses(teacher_id);
             List<Course> allcourses = courseServise.findAll();
             request.setAttribute("myCourses", myCourses);
@@ -47,7 +40,7 @@ public class MyCoursesTeacherAction extends Action {
             request.setAttribute("allCourses", allcourses);
             request.setAttribute("MyCoursesCount", myCourses.size());
             return new Forward("/teacher/teacher_courses");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }

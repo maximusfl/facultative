@@ -21,34 +21,22 @@ import java.util.logging.Logger;
 
 public class SingleCoueseTeacherAction extends Action {
     private static Logger logger = Logger.getLogger("SingleCoueseTeacherAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("called : SingleCoueseTeacherAction");
-
-
-
-
-
         try {
-
             Long course_id = Long.parseLong(request.getParameter("course_id"));
-
-            logger.info("course_id:  "+ course_id);
+            logger.info("course_id:  " + course_id);
             CourseServise courseServise = getServiceFactory().getCourseServise();
-
             List<Student> studentsOnTheCourse = courseServise.findStudentsByCourseId(course_id);
-
             Course course = courseServise.findById(course_id);
-
-
-
-
             request.setAttribute("course_id", course_id);
             request.setAttribute("studentsOnTheCourse", studentsOnTheCourse);
-            request.setAttribute("CurrentCourse",course);
+            request.setAttribute("CurrentCourse", course);
 
             return new Forward("/teacher/single_course");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }

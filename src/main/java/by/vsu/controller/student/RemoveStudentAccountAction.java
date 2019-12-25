@@ -20,47 +20,25 @@ import java.util.logging.Logger;
 public class RemoveStudentAccountAction extends Action {
 
 
-
     private static Logger logger = Logger.getLogger("RemoveStudentAccountAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
-
             logger.info("called RemoveStudentAccountAction");
             Long studentId = Long.parseLong(request.getParameter("student_id"));
-
             RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
             registredUserService.deleteByStudentId(studentId);
-
-
-
             List<Student> studentAccounts = registredUserService.findStudentsWithAccounts();
             request.setAttribute("studentAccounts", studentAccounts);
-
-
-
-
-
             StudentService studentService = getServiceFactory().getStudentService();
-
-
-
-
-
-
             List<Student> students = studentService.findAll();
             request.setAttribute("students", students);
-            request.setAttribute("studentsCountVar",students.size());
-            request.setAttribute("studentsAccountCountVar",studentAccounts.size());
-
+            request.setAttribute("studentsCountVar", students.size());
+            request.setAttribute("studentsAccountCountVar", studentAccounts.size());
             return new Forward("/admin/edit_student_page");
-
-
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }
-
-
 }

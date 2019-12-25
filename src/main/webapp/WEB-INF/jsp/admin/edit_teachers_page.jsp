@@ -3,17 +3,6 @@
 
 <hr class="my-4">
 
-
-
-
-
-
-
-
-
-
-
-
 <ul class="nav justify-content-center">
     <li class="nav-item">
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#addteacher">
@@ -32,7 +21,6 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">first name</label>
                                 <input type="text" class="form-control" name="first_name" id="exampleFormControlTextarea1" rows="1" required>
@@ -41,8 +29,6 @@
                                 <label for="exampleFormControlTextarea1">last name</label>
                                 <input type="text" class="form-control" name="last_name" id="exampleFormControlTextarea2" rows="1" required></input>
                             </div>
-
-
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -53,10 +39,8 @@
             </div>
         </div>
         </form>
-
     </li>
     <li class="nav-item">
-
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#createteacheraccount">
             create teacher account
         </button>
@@ -79,7 +63,6 @@
                                                 ${teach.first_name} ${teach.last_name}
                                         </option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                             <div class="form-group">
@@ -90,7 +73,6 @@
                                 <label for="exampleFormControlTextarea1">set password</label>
                                 <textarea class="form-control" name="password" id="password" rows="1" required></textarea>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -100,21 +82,14 @@
                 </div>
             </div>
         </form>
-
     </li>
-
-
-
     <li class="nav-item">
-
 <c:set var="teachersCountVar" scope="session" value="${teachersCount}"/>
-
 <c:if test="${teachersCountVar > 0}">
         <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#removeteacher">
             remove teacher
         </button>
 </c:if>
-
         <form action="${pageContext.request.contextPath}/admin/remove_teacher" method="POST">
             <div class="modal fade" id="removeteacher" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -134,7 +109,6 @@
                                                 ${teach.first_name} ${teach.last_name}
                                         </option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                         </div>
@@ -147,13 +121,9 @@
             </div>
         </form>
     </li>
-
-
     <li class="nav-item">
 <c:set var="teacherAccountsCountVar" scope="session" value="${teacherAccountsCount}"/>
-
 <c:if test="${teacherAccountsCountVar > 0}">
-
         <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#removeteacheraccount">
             remove teacher account
         </button>
@@ -177,7 +147,6 @@
                                                 ${account.first_name} ${account.last_name}
                                         </option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                         </div>
@@ -190,14 +159,8 @@
             </div>
         </form>
     </li>
-
-
 </ul>
-
-
-
 <hr class="my-4">
-
 <table class="table table-hover">
     <thead class="thead-light">
     <tr>
@@ -206,20 +169,14 @@
     </tr>
     </thead>
     <tbody>
-
     <c:forEach var="teacher" items="${teachers}">
         <tr>
             <th scope="row">${teacher.id}</th>
-
             <td>
                ${teacher.first_name} ${teacher.last_name}
             </td>
-
-
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
-
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

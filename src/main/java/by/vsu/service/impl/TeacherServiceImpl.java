@@ -21,16 +21,21 @@ public class TeacherServiceImpl extends EnableTransactionService implements Teac
         try {
             getTransaction().start();
             Teacher teacher = teacherDao.read(id);
-            if(teacher != null){
+            if (teacher != null) {
                 getTransaction().commit();
-
             }
             return teacher;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
 
@@ -41,19 +46,23 @@ public class TeacherServiceImpl extends EnableTransactionService implements Teac
         try {
             getTransaction().start();
             List<Teacher> teachers = teacherDao.readAll();
-            if(teachers != null){
+            if (teachers != null) {
                 getTransaction().commit();
-
             }
             return teachers;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
-
     }
 
     @Override
@@ -61,11 +70,12 @@ public class TeacherServiceImpl extends EnableTransactionService implements Teac
         try {
             getTransaction().start();
             teacherDao.create(teacher);
-
-
             getTransaction().commit();
-        } catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
         }
     }
@@ -76,29 +86,32 @@ public class TeacherServiceImpl extends EnableTransactionService implements Teac
             getTransaction().start();
             teacherDao.delete(id);
             getTransaction().commit();
-        } catch(DaoException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
-
     }
 
     @Override
     public Teacher findByCourseId(Long id) throws ServiceException {
-
-            try {
-                getTransaction().start();
-                Teacher teacher = teacherDao.readByCourseId(id);
-                if(teacher != null){
-                    getTransaction().commit();
-
-                }
-                return teacher;
-            }catch(DaoException e) {
-                try { getTransaction().rollback(); } catch(ServiceException e1) {}
-                throw new ServiceException(e);
-            } catch(ServiceException e) {
-                try { getTransaction().rollback(); } catch(ServiceException e1) {}
-                throw e;
+        try {
+            getTransaction().start();
+            Teacher teacher = teacherDao.readByCourseId(id);
+            if (teacher != null) {
+                getTransaction().commit();
             }
+            return teacher;
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
+            throw new ServiceException(e);
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
+            throw e;
+        }
     }
 }

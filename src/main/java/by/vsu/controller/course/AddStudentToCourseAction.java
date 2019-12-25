@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class AddStudentToCourseAction extends Action {
 
     private static Logger logger = Logger.getLogger("AddStudentToCourseAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -28,53 +29,35 @@ public class AddStudentToCourseAction extends Action {
             logger.info("called AddStudentToCourseAction");
             Long courseId = Long.parseLong(request.getParameter("course_id"));
             Long studentId = Long.parseLong(request.getParameter("student_id"));
-
-
             CourseServise courseServise = getServiceFactory().getCourseServise();
-            logger.info("course_id: "+courseId);
-            logger.info("student_id: "+ studentId);
             StudentService studentService = getServiceFactory().getStudentService();
-
             List<Student> allStidentsOnCourse = studentService.findByCourseId(courseId);
-            for(Student student : allStidentsOnCourse){
-                if(student.getId().equals(studentId)){
+            for (Student student : allStidentsOnCourse) {
+                if (student.getId().equals(studentId)) {
                     request.setAttribute("errorMessage", "this student already registered on course");
                     return new Forward("/error");
                 }
             }
-
-
-
-            courseServise.addStudentToCourse(courseId,studentId );
+            courseServise.addStudentToCourse(courseId, studentId);
             Course course = courseServise.findById(courseId);
-
             List<Student> students = studentService.findByCourseId(courseId);
             int studentsCount = students.size();
             TeacherService teacherService = getServiceFactory().getTeacherService();
             Teacher teacher = teacherService.findByCourseId(courseId);
             List<Student> allstudents = studentService.findAll();
 
-            logger.info("will be returned id for course: "+courseId);
-
-
+            logger.info("will be returned id for course: " + courseId);
             request.setAttribute("course", course);
             request.setAttribute("students", students);
             request.setAttribute("teacher", teacher);
             request.setAttribute("studentsCount", studentsCount);
-            request.setAttribute("allstudents",allstudents);
+            request.setAttribute("allstudents", allstudents);
 
             List<Teacher> teachers = teacherService.findAll();
-
-            logger.info("teachers list size:   "+teachers.size());
+            logger.info("teachers list size:   " + teachers.size());
             request.setAttribute("teachers", teachers);
-
-
-
-
-            String context = request.getContextPath();
-
             return new Forward("/admin/edit_single_course");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }

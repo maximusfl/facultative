@@ -18,21 +18,19 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class AddCourseAction extends Action {
-    private static Logger logger = Logger.getLogger("AddcourseAction");
+    private static Logger logger = Logger.getLogger("AddCourseAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
-            logger.info("called AddcourseAction");
+            logger.info("called AddCourseAction");
             TeacherService service = getServiceFactory().getTeacherService();
             List<Teacher> teachers = service.findAll();
-
-            logger.info("teachers list size:   "+teachers.size());
             request.setAttribute("teachers", teachers);
-
             return new Forward("/admin/add_course");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }
-    }
+}
 

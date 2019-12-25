@@ -101,7 +101,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -130,14 +129,12 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
                 Course course = new Course();
                 course.setId(resultSet.getLong("id"));
                 logger.info("course_id: " + course.getId());
-
                 Teacher teacher = new Teacher();
                 teacher.setId(resultSet.getLong("teacher_id"));
                 course.setTeacher(teacher);
                 logger.info("teacher_id: " + course.getTeacher().getId());
                 course.setCourseName(resultSet.getString("course_name"));
                 logger.info("course_name: " + course.getCourseName());
-
                 courses.add(course);
                 logger.info("size: " + courses.size());
             }
@@ -159,12 +156,10 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
     @Override
     public void deleteStudentByCourseId(Long courseId, Long studentId) throws DaoException {
         String sql = "DELETE FROM `courses_students` WHERE (`course_id` = ?) AND (`student_id`=?)";
-
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
             statement.setLong(1, courseId);
             statement.setLong(2, studentId);
             statement.executeUpdate();
@@ -185,16 +180,12 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
         PreparedStatement statement = null;
         logger.info("course id: " + courseId);
         logger.info("student id: " + studentId);
-
         try {
             logger.info("block try...");
             statement = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setLong(1, courseId);
-
             statement.setLong(2, studentId);
             statement.executeUpdate();
-
-
         } catch (SQLException e) {
             logger.info("block catch...");
             throw new DaoException(e);
@@ -204,7 +195,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
             } catch (Exception e) {
                 logger.info("block finaly + catch...");
             }
-
         }
     }
 
@@ -214,7 +204,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
         PreparedStatement statement = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, teacherId);
             statement.setLong(2, courseId);
             statement.executeUpdate();
@@ -248,7 +237,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
                 teacher.setId(resultSet.getLong(3));
                 teacher.setFirst_name(resultSet.getString(4));
                 teacher.setLast_name(resultSet.getString(5));
-
                 course.setTeacher(teacher);
                 courses.add(course);
             }
@@ -289,8 +277,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
                 course.setId(resultSet.getLong(1));
                 teacher.setId(resultSet.getLong(2));
                 course.setCourseName(resultSet.getString(3));
-
-
                 course.setTeacher(teacher);
                 courses.add(course);
             }
@@ -319,19 +305,15 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
         Long raiting = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, student_id);
             statement.setLong(2, courseId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 logger.info("getRaitingByStudentIdAndCourseId block while...");
-
                 if ((resultSet.getString("raiting") != null)) {
                     raiting = Long.parseLong(resultSet.getString("raiting"));
                 } else raiting = 0l;
                 logger.info("raiting: " + raiting);
-
-
             }
             return raiting;
         } catch (SQLException e) {
@@ -355,15 +337,12 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
         String resume = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, student_id);
             statement.setLong(2, courseId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 logger.info("getResumeByStudentIdAndCourseId block while...");
                 resume = resultSet.getString(1);
-
-
             }
             return resume;
         } catch (SQLException e) {
@@ -396,8 +375,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
                 course.setId(resultSet.getLong(1));
                 teacher.setId(resultSet.getLong(2));
                 course.setCourseName(resultSet.getString(3));
-
-
                 course.setTeacher(teacher);
                 courses.add(course);
             }
@@ -434,12 +411,9 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
             while (resultSet.next()) {
                 logger.info("findStudentsByCourseId block while...");
                 Student student = new Student();
-
                 student.setId(resultSet.getLong(1));
                 student.setFirst_name(resultSet.getString(2));
                 student.setLast_name(resultSet.getString(3));
-
-
                 students.add(student);
             }
             return students;
@@ -463,7 +437,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
         PreparedStatement statement = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, raiting);
             statement.setString(2, resume);
             statement.setLong(3, courseId);
@@ -478,7 +451,6 @@ public class CourseDaoImpl extends EnableConnectionDao implements CourseDao {
             }
         }
     }
-
 
 }
 

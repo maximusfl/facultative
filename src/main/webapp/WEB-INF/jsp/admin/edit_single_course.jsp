@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-
-
 <div class="text-center">
     <p>
     <h3>${course.courseName}</h3></p>
@@ -13,8 +11,6 @@
 </div>
 
 <hr class="my-4">
-
-
 <ul class="nav justify-content-center">
     <li class="nav-item">
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#changeteacher">
@@ -26,7 +22,8 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="changecourseteacher">current teacher: ${teacher.first_name} ${teacher.last_name} </h5>
+                            <h5 class="modal-title" id="changecourseteacher">current
+                                teacher: ${teacher.first_name} ${teacher.last_name} </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -52,8 +49,8 @@
             </div>
         </form>
     </li>
-    <li class="nav-item">
 
+    <li class="nav-item">
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#addstudtocourse">
             add student
         </button>
@@ -88,19 +85,15 @@
                 </div>
             </div>
         </form>
-
     </li>
-
-
 
     <li class="nav-item">
         <c:set var="num" scope="session" value="${studentsCount}"/>
-
         <c:if test="${num >= 1}">
-
-        <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#exampleModalCenter">
-            remove student
-        </button>
+            <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                remove student
+            </button>
         </c:if>
         <form action="${pageContext.request.contextPath}/admin/del_stud_from_course" method="POST">
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -135,21 +128,16 @@
         </form>
     </li>
 
-
     <li class="nav-item">
-
-
-            <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#removecourse">
-                remove course
-            </button>
-
+        <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#removecourse">
+            remove course
+        </button>
         <form action="${pageContext.request.contextPath}/admin/remove_course" method="POST">
             <div class="modal fade" id="removecourse" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -158,7 +146,6 @@
                             <div class="form-group">
                                 <input type="hidden" name="course_id" value="${course.id}"/>
                                 <h5 class="modal-title" id="ModalCenterTitle">Remove this course?</h5>
-
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -171,11 +158,9 @@
         </form>
     </li>
 
-
 </ul>
 
 <hr class="my-4">
-
 
 <div class="w-50 p-3">
     <table class="table table-hover">
@@ -192,7 +177,6 @@
         </c:forEach>
         </tbody>
     </table>
-
 
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

@@ -16,18 +16,19 @@ import java.util.logging.Logger;
 
 public class AllCoursesAction extends Action {
     private static Logger logger = Logger.getLogger("AllCoursesAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 
-            try {
-                logger.info("called AllCoursesAction");
-                CourseServise service = getServiceFactory().getCourseServise();
-                List<Course> courses = service.findAllWithTeachers();
-                request.setAttribute("courses", courses);
-                return new Forward("/all_courses");
-            } catch(FactoryException | ServiceException e) {
-                throw new ServletException(e);
-            }
+        try {
+            logger.info("called AllCoursesAction");
+            CourseServise service = getServiceFactory().getCourseServise();
+            List<Course> courses = service.findAllWithTeachers();
+            request.setAttribute("courses", courses);
+            return new Forward("/all_courses");
+        } catch (FactoryException | ServiceException e) {
+            throw new ServletException(e);
         }
     }
+}
 

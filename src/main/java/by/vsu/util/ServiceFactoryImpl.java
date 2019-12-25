@@ -1,4 +1,5 @@
 package by.vsu.util;
+
 import by.vsu.dao.CourseDao;
 import by.vsu.dao.RegistredUserDao;
 import by.vsu.dao.StudentDao;
@@ -14,7 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ServiceFactoryImpl implements ServiceFactory {
-   private Connection connection;
+    private Connection connection;
 
     @Override
     public StudentService getStudentService() throws FactoryException {
@@ -47,7 +48,7 @@ public class ServiceFactoryImpl implements ServiceFactory {
     }
 
     @Override
-    public RegistredUserService getRegistredUserService() throws FactoryException{
+    public RegistredUserService getRegistredUserService() throws FactoryException {
         RegistredUserServiceImpl userService = new RegistredUserServiceImpl();
         userService.setDefaultPassword("12345");
         userService.setTransaction(getTransaction());
@@ -64,45 +65,46 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     @Override
     public TeacherService getTeacherService() throws FactoryException {
-       TeacherServiceImpl teacherService = new TeacherServiceImpl();
-       teacherService.setTeacherDao(getTeacherDao());
-       teacherService.setTransaction(getTransaction());
-       return teacherService;
+        TeacherServiceImpl teacherService = new TeacherServiceImpl();
+        teacherService.setTeacherDao(getTeacherDao());
+        teacherService.setTransaction(getTransaction());
+        return teacherService;
 
-   }
+    }
 
-@Override
+    @Override
     public Transaction getTransaction() throws FactoryException {
-       TransactionImpl transaction = new TransactionImpl();
-       transaction.setConnection(getConnection());
-       return transaction;
-}
+        TransactionImpl transaction = new TransactionImpl();
+        transaction.setConnection(getConnection());
+        return transaction;
+    }
 
-@Override
+    @Override
     public TeacherDao getTeacherDao() throws FactoryException {
-    TeacherDaoImpl teacherDao = new TeacherDaoImpl();
-    teacherDao.setConnection(getConnection());
-    return teacherDao;
-}
+        TeacherDaoImpl teacherDao = new TeacherDaoImpl();
+        teacherDao.setConnection(getConnection());
+        return teacherDao;
+    }
 
-@Override
+    @Override
     public Connection getConnection() throws FactoryException {
-       if(connection == null){
-           try{
-               connection=Connector.getConnection();
-           }catch (SQLException e){
-               throw new FactoryException(e);
-           }
-       }
-       return connection;
-}
+        if (connection == null) {
+            try {
+                connection = Connector.getConnection();
+            } catch (SQLException e) {
+                throw new FactoryException(e);
+            }
+        }
+        return connection;
+    }
 
-@Override
-    public void close(){
-       try{
-           connection.close();
-           connection=null;
-       }catch (Exception e){}
-}
+    @Override
+    public void close() {
+        try {
+            connection.close();
+            connection = null;
+        } catch (Exception e) {
+        }
+    }
 
 }

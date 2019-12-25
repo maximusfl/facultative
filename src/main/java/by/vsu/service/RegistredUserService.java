@@ -13,13 +13,11 @@ public interface RegistredUserService {
 
     List<RegisteredUser> findAll() throws ServiceException;
 
-    void save(RegisteredUser user,Long id) throws ServiceException;
+    void save(RegisteredUser user, Long id) throws ServiceException;
 
     void changePassword(Long userId, String oldPassword, String newPassword) throws ServiceException;
 
     public RegisteredUser findByTeacherId(Long ig) throws ServiceException;
-
-
 
     void delete(Long id) throws ServiceException;
 
@@ -38,7 +36,6 @@ public interface RegistredUserService {
     void saveStudentAccount(RegisteredUser registeredUser, Long student_id) throws ServiceException;
 
     void deleteByStudentId(Long studentId) throws ServiceException;
-
 
 
     Long getStudentIdByRegUserId(Long id) throws ServiceException;

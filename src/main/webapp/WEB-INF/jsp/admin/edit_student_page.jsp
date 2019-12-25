@@ -3,14 +3,6 @@
 
 <hr class="my-4">
 
-
-
-
-
-
-
-
-
 <ul class="nav justify-content-center">
     <li class="nav-item">
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#addstudent">
@@ -29,17 +21,16 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">first name</label>
-                                    <textarea class="form-control" name="first_name" id="exampleFormControlTextarea1" rows="1" required></textarea>
+                                    <textarea class="form-control" name="first_name" id="exampleFormControlTextarea1"
+                                              rows="1" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">last name</label>
-                                    <textarea class="form-control" name="last_name" id="exampleFormControlTextarea2" rows="1" required></textarea>
+                                    <textarea class="form-control" name="last_name" id="exampleFormControlTextarea2"
+                                              rows="1" required></textarea>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -50,11 +41,10 @@
                 </div>
             </div>
         </form>
-
     </li>
     <li class="nav-item">
-
-        <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#createstudentaccount">
+        <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal"
+                data-target="#createstudentaccount">
             create student account
         </button>
         <form action="${pageContext.request.contextPath}/admin/create_student_account" method="POST">
@@ -76,7 +66,6 @@
                                                 ${student.first_name} ${student.last_name}
                                         </option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                             <div class="form-group">
@@ -85,9 +74,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">set password</label>
-                                <textarea class="form-control" name="password" id="password" rows="1" required></textarea>
+                                <textarea class="form-control" name="password" id="password" rows="1"
+                                          required></textarea>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -97,23 +86,14 @@
                 </div>
             </div>
         </form>
-
     </li>
-
-
-
     <li class="nav-item">
-
-<c:set var="studentsCountVar" scope="session" value="${studentsCountVar}"/>
-
-<c:if test="${studentsCountVar > 0}">
-
-
-
-        <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#removestudent">
-            remove student
-        </button>
-</c:if>
+        <c:set var="studentsCountVar" scope="session" value="${studentsCountVar}"/>
+        <c:if test="${studentsCountVar > 0}">
+            <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#removestudent">
+                remove student
+            </button>
+        </c:if>
         <form action="${pageContext.request.contextPath}/admin/remove_student" method="POST">
             <div class="modal fade" id="removestudent" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -146,17 +126,14 @@
             </div>
         </form>
     </li>
-
-
     <li class="nav-item">
-
-<c:set var="studentsAccountCountVar" scope="session" value="${studentsAccountCount}"/>
-
-<c:if test="${studentsAccountCountVar > 0}">
-        <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#remove_student_account">
-            remove student account
-        </button>
-</c:if>
+        <c:set var="studentsAccountCountVar" scope="session" value="${studentsAccountCount}"/>
+        <c:if test="${studentsAccountCountVar > 0}">
+            <button type="button" class="btn btn-outline-danger mr-1" data-toggle="modal"
+                    data-target="#remove_student_account">
+                remove student account
+            </button>
+        </c:if>
         <form action="${pageContext.request.contextPath}/admin/remove_student_account" method="POST">
             <div class="modal fade" id="remove_student_account" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -176,7 +153,6 @@
                                                 ${account.first_name} ${account.last_name}
                                         </option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                         </div>
@@ -189,11 +165,7 @@
             </div>
         </form>
     </li>
-
-
 </ul>
-
-
 
 <hr class="my-4">
 
@@ -205,20 +177,15 @@
     </tr>
     </thead>
     <tbody>
-
     <c:forEach var="student" items="${students}">
         <tr>
             <th scope="row">${student.id}</th>
-
             <td>
                     ${student.first_name} ${student.last_name}
             </td>
-
-
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
 
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

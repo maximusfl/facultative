@@ -10,13 +10,14 @@ import java.io.IOException;
 public abstract class Action {
     private ServiceFactory serviceFactory;
 
-    public final ServiceFactory getServiceFactory(){
+    public final ServiceFactory getServiceFactory() {
         return serviceFactory;
     }
-    public final void setServiceFactory(ServiceFactory serviceFactory){
+
+    public final void setServiceFactory(ServiceFactory serviceFactory) {
         this.serviceFactory = serviceFactory;
     }
 
-    abstract public Forward execute (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    abstract public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

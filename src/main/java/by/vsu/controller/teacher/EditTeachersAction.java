@@ -20,26 +20,24 @@ public class EditTeachersAction extends Action {
 
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            logger.info("called AddcourseAction");
+            TeacherService service = getServiceFactory().getTeacherService();
+            List<Teacher> teachers = service.findAll();
+            logger.info("teachers list size:   " + teachers.size());
+            request.setAttribute("teachers", teachers);
+            RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
+            logger.info("trying to find all teacher accounts...");
+            List<Teacher> teacherAccounts = registredUserService.findTeachersWithAccounts();
+            logger.info("size list of teacher accounts: " + teacherAccounts.size());
+            request.setAttribute("teacherAccounts", teacherAccounts);
+            request.setAttribute("teachersCount", teachers.size());
+            request.setAttribute("teacherAccountsCount", teacherAccounts.size());
 
-            try {
-                logger.info("called AddcourseAction");
-                TeacherService service = getServiceFactory().getTeacherService();
-                List<Teacher> teachers = service.findAll();
-
-                logger.info("teachers list size:   "+teachers.size());
-                request.setAttribute("teachers", teachers);
-                RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
-                logger.info("trying to find all teacher accounts...");
-                List<Teacher> teacherAccounts = registredUserService.findTeachersWithAccounts();
-                logger.info("size list of teacher accounts: "+teacherAccounts.size());
-                request.setAttribute("teacherAccounts", teacherAccounts);
-                request.setAttribute("teachersCount", teachers.size());
-                request.setAttribute("teacherAccountsCount",teacherAccounts.size());
-
-                return new Forward("/admin/edit_teachers_page");
-            } catch(FactoryException | ServiceException e) {
-                throw new ServletException(e);
-            }
+            return new Forward("/admin/edit_teachers_page");
+        } catch (FactoryException | ServiceException e) {
+            throw new ServletException(e);
         }
     }
+}
 

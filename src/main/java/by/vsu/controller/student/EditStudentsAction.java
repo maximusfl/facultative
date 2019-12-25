@@ -22,25 +22,21 @@ public class EditStudentsAction extends Action {
 
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
             logger.info("called EditStudentsAction");
             StudentService studentService = getServiceFactory().getStudentService();
             List<Student> students = studentService.findAll();
-
-            logger.info("students list size:   "+students.size());
+            logger.info("students list size:   " + students.size());
             request.setAttribute("students", students);
             RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
             logger.info("trying to find all students accounts...");
             List<Student> studentAccounts = registredUserService.findStudentsWithAccounts();
-            logger.info("size list of students accounts: "+studentAccounts.size());
+            logger.info("size list of students accounts: " + studentAccounts.size());
             request.setAttribute("studentAccounts", studentAccounts);
-
-            request.setAttribute("studentsCountVar",students.size());
-            request.setAttribute("studentsAccountCountVar",studentAccounts.size());
-
+            request.setAttribute("studentsCountVar", students.size());
+            request.setAttribute("studentsAccountCountVar", studentAccounts.size());
             return new Forward("/admin/edit_student_page");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }

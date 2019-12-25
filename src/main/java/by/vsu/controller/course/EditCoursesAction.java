@@ -16,17 +16,16 @@ import java.util.logging.Logger;
 
 public class EditCoursesAction extends Action {
     private static Logger logger = Logger.getLogger("EditCoursesAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
             logger.info("called EditCoursesAction");
             CourseServise service = getServiceFactory().getCourseServise();
             List<Course> courses = service.findAll();
             request.setAttribute("courses", courses);
-
             return new Forward("/admin/edit_courses");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }

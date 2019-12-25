@@ -23,35 +23,22 @@ public class RemoveStudentAction extends Action {
 
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
-
             logger.info("called RemoveStudentAction");
             Long studentId = Long.parseLong(request.getParameter("student_id"));
-            logger.info("studentId: "+studentId);
-
+            logger.info("studentId: " + studentId);
             StudentService studentService = getServiceFactory().getStudentService();
-
-
             studentService.delete(studentId);
-
             RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
-
             List<Student> studentAccounts = registredUserService.findStudentsWithAccounts();
             request.setAttribute("studentAccounts", studentAccounts);
-
-
-
             List<Student> students = studentService.findAll();
-
-            logger.info("students list size:   "+students.size());
+            logger.info("students list size:   " + students.size());
             request.setAttribute("students", students);
-            request.setAttribute("studentsCountVar",students.size());
-            request.setAttribute("studentsAccountCountVar",studentAccounts.size());
+            request.setAttribute("studentsCountVar", students.size());
+            request.setAttribute("studentsAccountCountVar", studentAccounts.size());
 
             return new Forward("/admin/edit_student_page");
-
-
         } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

@@ -21,8 +21,6 @@ public class MainAction extends Action {
         logger.info("called MainAction, session = " + session);
         if (session != null) {
             RegisteredUser user = (RegisteredUser) session.getAttribute("currentUser");
-
-
             logger.info("currentUser: " + user);
             if (user != null) {
                 logger.info("userRole: " + user.getRole());
@@ -37,7 +35,6 @@ public class MainAction extends Action {
                     case STUDENT:
                         logger.info("case: student");
                         return new Forward("/student/student_home_page");
-
                     default:
                         return new Forward("/login");
                 }
@@ -48,7 +45,6 @@ public class MainAction extends Action {
             }
         } else {
             logger.info("session is null will return forward to /login flom LAST else");
-
             return new Forward("/login");
         }
     }

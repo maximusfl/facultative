@@ -17,40 +17,36 @@ import java.util.logging.Logger;
 
 public class TeacherViewAction extends Action {
     private static Logger logger = Logger.getLogger("TeacherViewAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("called TeacherViewAction");
-        try{
+        try {
             logger.info("trying to save new teacher...");
             Teacher teacher = new Teacher();
             teacher.setFirst_name(request.getParameter("first_name"));
             teacher.setLast_name(request.getParameter("last_name"));
-
             TeacherService teacherService = getServiceFactory().getTeacherService();
-
             List<Teacher> teachers = teacherService.findAll();
-            for(Teacher teacher1 : teachers){
-                if(teacher1.getFirst_name().equals(teacher.getFirst_name())
+            for (Teacher teacher1 : teachers) {
+                if (teacher1.getFirst_name().equals(teacher.getFirst_name())
                         &&
-                        teacher1.getLast_name().equals(teacher.getLast_name())){
+                        teacher1.getLast_name().equals(teacher.getLast_name())) {
                     request.setAttribute("errorMessage", "this teacher has been added already");
                     return new Forward("/error");
-
                 }
             }
-
-          teacherService.save(teacher);
-
-            if(teacher != null){
+            teacherService.save(teacher);
+            if (teacher != null) {
                 request.setAttribute("teacher", teacher);
-               return new Forward("/teacher/list");
+                return new Forward("/teacher/list");
             } else {
                 throw new NumberFormatException();
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return new Forward("/teacher/list");
-        }catch (FactoryException | ServiceException e){
-            throw  new ServletException(e);
+        } catch (FactoryException | ServiceException e) {
+            throw new ServletException(e);
         }
     }
 }

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 public class StudentDaoImpl extends EnableConnectionDao implements StudentDao {
     private static Logger logger = Logger.getLogger("StudentDaoImpl");
+
     @Override
     public List<Student> findByCourseId(Long id) {
         List<Student> loadedStudents = new ArrayList<>();
@@ -26,36 +27,34 @@ public class StudentDaoImpl extends EnableConnectionDao implements StudentDao {
                 "        where courses_students.course_id =?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-
         try {
             statement = getConnection().prepareStatement(sql);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
                 Student student = new Student();
                 student.setId(resultSet.getLong("id"));
                 logger.info("student_id: " + student.getId());
                 student.setFirst_name(resultSet.getString("first_name"));
                 student.setLast_name(resultSet.getString("last_name"));
-
-
                 loadedStudents.add(student);
                 logger.info("size: " + loadedStudents.size());
-
             }
-
-
-
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             try {
                 throw new DaoException(e);
             } catch (DaoException ex) {
                 ex.printStackTrace();
             }
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
         return loadedStudents;
     }
@@ -70,20 +69,25 @@ public class StudentDaoImpl extends EnableConnectionDao implements StudentDao {
             statement = getConnection().createStatement();
             resultSet = statement.executeQuery(sql);
             List<Student> students = new ArrayList<>();
-            while(resultSet.next()) {
-                Student student= new Student();
+            while (resultSet.next()) {
+                Student student = new Student();
                 student.setId(Long.parseLong(resultSet.getString("id")));
                 student.setFirst_name(resultSet.getString("first_name"));
                 student.setLast_name(resultSet.getString("last_name"));
-
                 students.add(student);
             }
             return students;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -105,15 +109,21 @@ public class StudentDaoImpl extends EnableConnectionDao implements StudentDao {
             statement.executeUpdate();
             Long id = null;
             resultSet = statement.getGeneratedKeys();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 id = resultSet.getLong(1);
             }
             return id;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -124,22 +134,22 @@ public class StudentDaoImpl extends EnableConnectionDao implements StudentDao {
 
     @Override
     public void delete(Long id) throws DaoException {
-
-
         String sql = "DELETE FROM `students` WHERE `id` = ?";
 
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
             statement.setLong(1, id);
             statement.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
         }
     }
-    }
+}
 

@@ -17,21 +17,20 @@ public class ActionFactory {
 
     static {
         actions.put("/", MainAction.class);
-        actions.put("/index",MainAction.class);
-        actions.put("/login",LoginAction.class);
-        actions.put("/logout",LogoutAction.class);
+        actions.put("/index", MainAction.class);
+        actions.put("/login", LoginAction.class);
+        actions.put("/logout", LogoutAction.class);
         actions.put("/admin/edit_courses", EditCoursesAction.class);
         actions.put("/admin/edit_single_course", EditSingleCourseAction.class);
         actions.put("/admin/add_course", AddCourseAction.class);
         actions.put("/admin/save_course", SaveCourseAction.class);
         actions.put("/all_courses", AllCoursesAction.class);
         actions.put("/teacher/view", TeacherViewAction.class);
-//        actions.put("/user/save", RegistredUserSaveAction.class);
         actions.put("/admin/del_stud_from_course", RemoveStudentFromCourseAction.class);
         actions.put("/admin/add_stud_to_course", AddStudentToCourseAction.class);
-        actions.put("/admin/change_teacher",ChangeTeacherAction.class);
-        actions.put("error",ErrorAction.class);
-        actions.put("/admin/remove_course",RemoveCourseAction.class);
+        actions.put("/admin/change_teacher", ChangeTeacherAction.class);
+        actions.put("error", ErrorAction.class);
+        actions.put("/admin/remove_course", RemoveCourseAction.class);
         actions.put("/admin/edit_teachers_page", EditTeachersAction.class);
         actions.put("/admin/add_teacher", AddTeacherAction.class);
         actions.put("/admin/create_teacher_account", CreateTeacherAccount.class);
@@ -49,28 +48,20 @@ public class ActionFactory {
         actions.put("/teacher/my_courses", MyCoursesTeacherAction.class);
         actions.put("/teacher/single_course", SingleCoueseTeacherAction.class);
         actions.put("/teacher/add_raiting", AddRaitingAction.class);
-
-
-
-
-
-
     }
 
-    public static Action getAction(String url) throws ServletException{
+    public static Action getAction(String url) throws ServletException {
         logger.info("called ActionFactory.getAction ");
         Class<?> action = actions.get(url);
-        logger.info("try to process url: "+url);
-        if( action != null){
+        logger.info("try to process url: " + url);
+        if (action != null) {
             try {
-                logger.info("will have been retun action: "+action.getSimpleName());
-
+                logger.info("will have been retun action: " + action.getSimpleName());
                 return (Action) action.getDeclaredConstructor().newInstance();
-
-            }catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | InstantiationException e){
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
                 throw new ServletException(e);
             }
-        }else  {
+        } else {
             return null;
         }
     }

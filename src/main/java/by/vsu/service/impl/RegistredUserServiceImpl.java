@@ -26,18 +26,16 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
         try {
             getTransaction().start();
             return userDao.read(id);
-        } catch(DaoException e) {
-
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
-
     }
 
     @Override
     public RegisteredUser findByLoginAndPassword(String login, String password) throws ServiceException {
         try {
             return userDao.readByLoginAndPassword(login, password);
-        } catch(DaoException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
@@ -46,7 +44,7 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
     public List<RegisteredUser> findAll() throws ServiceException {
         try {
             return userDao.readAll();
-        } catch(DaoException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
@@ -55,11 +53,11 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
     public void save(RegisteredUser user, Long id) throws ServiceException {
         try {
             getTransaction().start();
-            if(user.getId() != null) {
+            if (user.getId() != null) {
                 RegisteredUser storedUser = userDao.read(user.getId());
-                if(storedUser != null) {
+                if (storedUser != null) {
                     user.setPassword(storedUser.getPassword());
-                    if(storedUser.getLogin().equals(user.getLogin()) || userDao.readByLogin(user.getLogin()) == null) {
+                    if (storedUser.getLogin().equals(user.getLogin()) || userDao.readByLogin(user.getLogin()) == null) {
                         userDao.update(user);
                     } else {
                         throw new UserLoginNotUniqueException(user.getLogin());
@@ -68,18 +66,20 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
                     throw new UserNotExistsException(user.getId());
                 }
             } else {
-
                 userDao.save(user, id);
-
-
-
             }
             getTransaction().commit();
-        } catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         } catch (UserNotExistsException e) {
             e.printStackTrace();
@@ -93,9 +93,9 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
         try {
             getTransaction().start();
             RegisteredUser user = userDao.read(userId);
-            if(user != null) {
-                if(user.getPassword().equals(oldPassword)) {
-                    if(newPassword == null) {
+            if (user != null) {
+                if (user.getPassword().equals(oldPassword)) {
+                    if (newPassword == null) {
                         newPassword = defaultPassword;
                     }
                     user.setPassword(newPassword);
@@ -107,11 +107,17 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
                 throw new UserNotExistsException(userId);
             }
             getTransaction().commit();
-        } catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         } catch (UserNotExistsException e) {
             e.printStackTrace();
@@ -126,19 +132,23 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             RegisteredUser user = userDao.readByTeacherId(id);
 
-            if(user != null){
+            if (user != null) {
                 getTransaction().commit();
-
             }
             return user;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
-
     }
 
 
@@ -148,11 +158,17 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             userDao.delete(id);
             getTransaction().commit();
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -163,19 +179,24 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             RegisteredUser user = userDao.readByLogin(login);
 
-            if(user != null){
+            if (user != null) {
                 getTransaction().commit();
 
             }
             return user;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
-
     }
 
     @Override
@@ -184,11 +205,17 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             userDao.deleteByTeacherId(teacherId);
             getTransaction().commit();
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -199,19 +226,23 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             List<RegisteredUser> teacherAccounts = userDao.findAllteacherAccounts();
 
-            if(teacherAccounts != null){
+            if (teacherAccounts != null) {
                 getTransaction().commit();
-
             }
             return teacherAccounts;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
-
     }
 
     @Override
@@ -219,17 +250,21 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
         try {
             getTransaction().start();
             List<Teacher> teacherAccounts = userDao.findTeachersWithAccounts();
-
-            if(teacherAccounts != null){
+            if (teacherAccounts != null) {
                 getTransaction().commit();
-
             }
             return teacherAccounts;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -240,16 +275,21 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             List<Student> studentAccounts = userDao.findStudentsWithAccounts();
 
-            if(studentAccounts != null){
+            if (studentAccounts != null) {
                 getTransaction().commit();
-
             }
             return studentAccounts;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -260,16 +300,21 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             RegisteredUser user = userDao.readByStudentId(student_id);
 
-            if(user != null){
+            if (user != null) {
                 getTransaction().commit();
-
             }
             return user;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -278,19 +323,19 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
     public void saveStudentAccount(RegisteredUser registeredUser, Long student_id) throws ServiceException {
         try {
             getTransaction().start();
-
-
-                userDao.saveStudentAccount(registeredUser, student_id);
-
-
-
-
+            userDao.saveStudentAccount(registeredUser, student_id);
             getTransaction().commit();
-        } catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -301,11 +346,17 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
             getTransaction().start();
             userDao.deleteByStudentId(studentId);
             getTransaction().commit();
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -314,18 +365,22 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
     public Long getStudentIdByRegUserId(Long id) throws ServiceException {
         try {
             getTransaction().start();
-           Long student_id = userDao.findStudentIdByUserId(id);
-
-            if(student_id != null){
+            Long student_id = userDao.findStudentIdByUserId(id);
+            if (student_id != null) {
                 getTransaction().commit();
-
             }
             return student_id;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -335,17 +390,21 @@ public class RegistredUserServiceImpl extends EnableTransactionService implement
         try {
             getTransaction().start();
             Long teacher_id = userDao.findTeacherIdByUserId(id);
-
-            if(teacher_id != null){
+            if (teacher_id != null) {
                 getTransaction().commit();
-
             }
             return teacher_id;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }

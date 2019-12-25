@@ -15,20 +15,20 @@ import java.util.logging.Logger;
 
 public class LoginAction extends Action {
     private static Logger logger = Logger.getLogger("LoginAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("called LoginAction");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        logger.info("login: "+login+" password: "+password);
+        logger.info("login: " + login + " password: " + password);
         if (login != null && password != null) {
             try {
                 RegistredUserService userService = getServiceFactory().getRegistredUserService();
                 RegisteredUser registeredUser = userService.findByLoginAndPassword(login, password);
                 if (registeredUser != null) {
-
                     HttpSession session = request.getSession();
-                    logger.info("created httpSession: "+session+" with userRole: "+ registeredUser.getRole());
+                    logger.info("created httpSession: " + session + " with userRole: " + registeredUser.getRole());
                     session.setAttribute("currentUser", registeredUser);
                     request.setAttribute("role", registeredUser.getRole());
                     return new Forward("/index");
@@ -39,7 +39,6 @@ public class LoginAction extends Action {
             } catch (FactoryException | ServiceException e) {
                 throw new ServletException(e);
             }
-
         } else {
             return null;
         }

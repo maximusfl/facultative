@@ -15,7 +15,6 @@ public interface RegistredUserDao extends Dao<RegisteredUser> {
 
     RegisteredUser readByLoginAndPassword(String login, String password) throws DaoException;
 
-
     RegisteredUser readByTeacherId(Long id) throws DaoException;
 
     void deleteByTeacherId(Long teacherId) throws DaoException;

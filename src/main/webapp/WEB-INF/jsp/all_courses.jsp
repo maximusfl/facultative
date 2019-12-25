@@ -8,35 +8,24 @@
 
 <hr class="my-4">
 
-
-
-
 <table class="table table-hover">
     <thead class="thead-light">
     <tr>
         <th scope="col">Course</th>
         <th scope="col">Teacher name</th>
-
     </tr>
     </thead>
     <tbody>
-
     <c:forEach var="course" items="${courses}">
         <tr>
             <th scope="row">${course.courseName}</th>
-
             <td>
                     ${course.teacher.first_name} ${course.teacher.last_name}
             </td>
-
-
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
-
-
 
 <jsp:include page="footer.jsp"></jsp:include>
 

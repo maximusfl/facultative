@@ -30,35 +30,45 @@ public class StudentServiceImpl extends EnableTransactionService implements Stud
         try {
             getTransaction().start();
             List<Student> students = studentDao.findAll();
-            if(students != null){
+            if (students != null) {
                 getTransaction().commit();
-
             }
             return students;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
 
     @Override
-    public List<Student> findByCourseId(Long id) throws ServiceException{
+    public List<Student> findByCourseId(Long id) throws ServiceException {
         try {
             getTransaction().start();
             List<Student> students = studentDao.findByCourseId(id);
-            if(students != null){
+            if (students != null) {
                 getTransaction().commit();
-
             }
             return students;
-        }catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
-        } catch(ServiceException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (ServiceException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw e;
         }
     }
@@ -69,14 +79,14 @@ public class StudentServiceImpl extends EnableTransactionService implements Stud
         try {
             getTransaction().start();
             studentDao.create(student);
-
-
             getTransaction().commit();
-        } catch(DaoException e) {
-            try { getTransaction().rollback(); } catch(ServiceException e1) {}
+        } catch (DaoException e) {
+            try {
+                getTransaction().rollback();
+            } catch (ServiceException e1) {
+            }
             throw new ServiceException(e);
         }
-
     }
 
     @Override
@@ -85,10 +95,8 @@ public class StudentServiceImpl extends EnableTransactionService implements Stud
             getTransaction().start();
             studentDao.delete(id);
             getTransaction().commit();
-        } catch(DaoException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
-
-
     }
 }

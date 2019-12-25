@@ -20,7 +20,6 @@ public class TransactionImpl implements Transaction {
         } catch (SQLException e) {
             throw new TransactionException(e);
         }
-
     }
 
     @Override

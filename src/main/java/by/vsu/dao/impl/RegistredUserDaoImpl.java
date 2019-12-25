@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 public class RegistredUserDaoImpl extends EnableConnectionDao implements RegistredUserDao {
     private static Logger logger = Logger.getLogger("RegistredUserDaoImpl");
+
     @Override
     public RegisteredUser read(Long id) throws DaoException {
         String sql = "SELECT `login`, `password`, `role` FROM `user` WHERE `id` = ?";
@@ -28,7 +29,7 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
             RegisteredUser user = null;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 user = new RegisteredUser();
                 user.setId(id);
                 user.setLogin(resultSet.getString("login"));
@@ -36,11 +37,17 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
                 user.setRole(Role.values()[resultSet.getInt("role")]);
             }
             return user;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -59,7 +66,7 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement.setString(1, login);
             resultSet = statement.executeQuery();
             RegisteredUser user = null;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 user = new RegisteredUser();
                 user.setId(resultSet.getLong("id"));
                 user.setLogin(login);
@@ -67,11 +74,17 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
                 user.setRole(Role.valueOf(resultSet.getString("role")));
             }
             return user;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -87,25 +100,28 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement.setString(1, login);
             statement.setString(2, password);
             resultSet = statement.executeQuery();
-            logger.info("resultSet: " +resultSet.toString());
-
+            logger.info("resultSet: " + resultSet.toString());
             RegisteredUser user = null;
-            if(resultSet.next()) {
-
+            if (resultSet.next()) {
                 user = new RegisteredUser();
                 user.setId(resultSet.getLong("id"));
                 user.setLogin(login);
                 user.setPassword(password);
-
                 user.setRole(Role.valueOf(resultSet.getString("role")));
-                logger.info("role: "+resultSet.getString("role"));
+                logger.info("role: " + resultSet.getString("role"));
             }
             return user;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -118,26 +134,29 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
-            logger.info("resultSet: " +resultSet.toString());
-
+            logger.info("resultSet: " + resultSet.toString());
             RegisteredUser user = null;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 logger.info("block if resultSet.next()...");
-
                 user = new RegisteredUser();
                 user.setId(resultSet.getLong("id"));
                 user.setRole(Role.valueOf(resultSet.getString("role")));
-                logger.info("role: "+resultSet.getString("role"));
+                logger.info("role: " + resultSet.getString("role"));
             }
             return user;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -149,10 +168,13 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().prepareStatement(sql);
             statement.setLong(1, teacherId);
             statement.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -165,7 +187,7 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().createStatement();
             resultSet = statement.executeQuery(sql);
             List<RegisteredUser> users = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 RegisteredUser user = new RegisteredUser();
                 user.setId(resultSet.getLong("id"));
                 user.setLogin(resultSet.getString("login"));
@@ -174,11 +196,17 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
                 users.add(user);
             }
             return users;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -193,20 +221,25 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().createStatement();
             resultSet = statement.executeQuery(sql);
             List<Teacher> teachers = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Teacher teacher = new Teacher();
                 teacher.setId(resultSet.getLong("id"));
                 teacher.setFirst_name(resultSet.getString("first_name"));
                 teacher.setLast_name(resultSet.getString("last_name"));
-
                 teachers.add(teacher);
             }
             return teachers;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -221,52 +254,59 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().createStatement();
             resultSet = statement.executeQuery(sql);
             List<Student> students = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Student student = new Student();
                 student.setId(resultSet.getLong("id"));
                 student.setFirst_name(resultSet.getString("first_name"));
                 student.setLast_name(resultSet.getString("last_name"));
-
                 students.add(student);
             }
             return students;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
     @Override
     public RegisteredUser readByStudentId(Long student_id) throws DaoException {
         logger.info("called  readByStudentId");
-
         String sql = "SELECT `id`, `role` FROM `registered_users` WHERE `student_id` = ?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, student_id);
             resultSet = statement.executeQuery();
-            logger.info("resultSet: " +resultSet.toString());
-
+            logger.info("resultSet: " + resultSet.toString());
             RegisteredUser user = null;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 logger.info("block if resultSet.next()...");
-
                 user = new RegisteredUser();
                 user.setId(resultSet.getLong("id"));
                 user.setRole(Role.valueOf(resultSet.getString("role")));
-                logger.info("role: "+resultSet.getString("role"));
+                logger.info("role: " + resultSet.getString("role"));
             }
             return user;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -280,15 +320,19 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement.setString(1, registeredUser.getLogin());
             statement.setString(2, registeredUser.getPassword());
             statement.setString(3, registeredUser.getRole().name());
-            statement.setLong(4,student_id);
-
+            statement.setLong(4, student_id);
             statement.executeUpdate();
-
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -300,17 +344,19 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().prepareStatement(sql);
             statement.setLong(1, studentId);
             statement.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
         }
     }
 
     @Override
     public Long findStudentIdByUserId(Long id) throws DaoException {
         logger.info("called  findStudentIdByUserId");
-
         String sql = "Select students.id \n" +
                 "                From students Inner Join\n" +
                 "                 `registered_users` On registered_users.student_id = students.id WHERE registered_users.`id` = ?";
@@ -318,27 +364,31 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
-            logger.info("resultSet: " +resultSet.toString());
-
+            logger.info("resultSet: " + resultSet.toString());
             Long studentId = null;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 logger.info("block if resultSet.next()...");
-                logger.info("result: " +resultSet.getString(1));
-
-
-               studentId = Long.parseLong(resultSet.getString(1));
-               logger.info("will be returhed id: "+studentId);
+                logger.info("result: " + resultSet.getString(1));
+                studentId = Long.parseLong(resultSet.getString(1));
+                logger.info("will be returhed id: " + studentId);
             }
             return studentId;
-        } catch(SQLException e) {
-            logger.info("exception here! :  " +e.getSQLState());
+        } catch (SQLException e) {
+            logger.info("exception here! :  " + e.getSQLState());
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {  logger.info("exception here! :  " +e.getLocalizedMessage());}
-            try{ resultSet.close(); } catch(Exception e) {  logger.info("exception here! :  " +e.getLocalizedMessage());}
+            try {
+                statement.close();
+            } catch (Exception e) {
+                logger.info("exception here! :  " + e.getLocalizedMessage());
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+                logger.info("exception here! :  " + e.getLocalizedMessage());
+            }
         }
     }
 
@@ -353,27 +403,31 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(sql);
-
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
-            logger.info("resultSet: " +resultSet.toString());
-
+            logger.info("resultSet: " + resultSet.toString());
             Long teacherId = null;
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 logger.info("block if resultSet.next()...");
-                logger.info("result: " +resultSet.getString(1));
-
-
+                logger.info("result: " + resultSet.getString(1));
                 teacherId = Long.parseLong(resultSet.getString(1));
-                logger.info("will be returhed id: "+teacherId);
+                logger.info("will be returhed id: " + teacherId);
             }
             return teacherId;
-        } catch(SQLException e) {
-            logger.info("exception here! :  " +e.getSQLState());
+        } catch (SQLException e) {
+            logger.info("exception here! :  " + e.getSQLState());
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {  logger.info("exception here! :  " +e.getLocalizedMessage());}
-            try{ resultSet.close(); } catch(Exception e) {  logger.info("exception here! :  " +e.getLocalizedMessage());}
+            try {
+                statement.close();
+            } catch (Exception e) {
+                logger.info("exception here! :  " + e.getLocalizedMessage());
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+                logger.info("exception here! :  " + e.getLocalizedMessage());
+            }
         }
     }
 
@@ -387,7 +441,7 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().createStatement();
             resultSet = statement.executeQuery(sql);
             List<RegisteredUser> users = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 RegisteredUser user = new RegisteredUser();
                 user.setId(resultSet.getLong("id"));
                 user.setLogin(resultSet.getString("login"));
@@ -396,19 +450,23 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
                 users.add(user);
             }
             return users;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
 
-
-
     @Override
-    public void  save (RegisteredUser user, Long teacherId) throws DaoException {
+    public void save(RegisteredUser user, Long teacherId) throws DaoException {
         String sql = "INSERT INTO `registered_users` (`login`, `password`, `role`, `teacher_id`) VALUES (?, ?, ?,?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -417,15 +475,19 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getRole().name());
-            statement.setLong(4,teacherId);
-
+            statement.setLong(4, teacherId);
             statement.executeUpdate();
-
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
-            try{ resultSet.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
+            try {
+                resultSet.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -440,10 +502,13 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement.setInt(3, user.getRole().ordinal());
             statement.setLong(4, user.getId());
             statement.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -455,10 +520,13 @@ public class RegistredUserDaoImpl extends EnableConnectionDao implements Registr
             statement = getConnection().prepareStatement(sql);
             statement.setLong(1, id);
             statement.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try{ statement.close(); } catch(Exception e) {}
+            try {
+                statement.close();
+            } catch (Exception e) {
+            }
         }
     }
 }

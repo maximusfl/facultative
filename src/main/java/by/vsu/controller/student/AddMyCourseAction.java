@@ -18,37 +18,32 @@ import java.util.logging.Logger;
 
 public class AddMyCourseAction extends Action {
     private static Logger logger = Logger.getLogger("AddMyCourseAction");
+
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("called : AddMyCourseAction");
         Long student_id = null;
-             try {
-          Long courseId = Long.parseLong(request.getParameter("course_id"));
-                 RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
-
-                 RegisteredUser registeredUser = (RegisteredUser) request
-                         .getSession(false)
-                         .getAttribute("currentUser");
-
-                 if(registeredUser != null){
-                     student_id = registredUserService.getStudentIdByRegUserId(registeredUser.getId());
-                     logger.info("student_id: "+student_id );
-                     logger.info("course_id: "+courseId);
-                 }
+        try {
+            Long courseId = Long.parseLong(request.getParameter("course_id"));
+            RegistredUserService registredUserService = getServiceFactory().getRegistredUserService();
+            RegisteredUser registeredUser = (RegisteredUser) request
+                    .getSession(false)
+                    .getAttribute("currentUser");
+            if (registeredUser != null) {
+                student_id = registredUserService.getStudentIdByRegUserId(registeredUser.getId());
+                logger.info("student_id: " + student_id);
+                logger.info("course_id: " + courseId);
+            }
             CourseServise courseServise = getServiceFactory().getCourseServise();
-                 List<Course> myCourses = courseServise.findAllWithStudent(student_id);
-
-                 for(Course course : myCourses){
-                     if (course.getId().equals(courseId)){
-                         request.setAttribute("errorMessage", "yuo already have been registered on course");
-                         return new Forward("/error");
-                     }
-                 }
-
-
-                 courseServise.addStudentToCourse(courseId,student_id);
-                List<Course> allcourses = courseServise.findAll();
-
+            List<Course> myCourses = courseServise.findAllWithStudent(student_id);
+            for (Course course : myCourses) {
+                if (course.getId().equals(courseId)) {
+                    request.setAttribute("errorMessage", "yuo already have been registered on course");
+                    return new Forward("/error");
+                }
+            }
+            courseServise.addStudentToCourse(courseId, student_id);
+            List<Course> allcourses = courseServise.findAll();
             myCourses = courseServise.findAllWithStudent(student_id);
 
             request.setAttribute("myCourses", myCourses);
@@ -56,7 +51,7 @@ public class AddMyCourseAction extends Action {
             request.setAttribute("allCourses", allcourses);
             request.setAttribute("MyCoursesCount", myCourses.size());
             return new Forward("/student/student_home_page");
-        } catch(FactoryException | ServiceException e) {
+        } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
     }

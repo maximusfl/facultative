@@ -26,57 +26,50 @@ public class SecurityFilter implements Filter {
         Set<Role> students = new HashSet<>();
         students.add(Role.STUDENT);
 
-
         permissions.put("/logout", all);
-//        permissions.put("/allcourses", all);
         permissions.put("/admin/admin_home_page", admin);
-//        permissions.put("/",all);
-
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest httpServletRequest =(HttpServletRequest)servletRequest;
-        HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String url = httpServletRequest.getRequestURI();
         String context = httpServletRequest.getContextPath();
         int postfixindex = url.lastIndexOf(".jsp");
         logger.info("called SecurityFilter");
-        if(postfixindex != -1){
-            logger.info("postfixIndex != -1 securityFilter prosessing url: "+url);
+        if (postfixindex != -1) {
+            logger.info("postfixIndex != -1 securityFilter prosessing url: " + url);
             url = url.substring(context.length(), postfixindex);
-        }else {
-            logger.info("postfixIndex -1 securityFilter prosessing url: "+url);
+        } else {
+            logger.info("postfixIndex -1 securityFilter prosessing url: " + url);
             url = url.substring(context.length());
         }
 
         Set<Role> roles = permissions.get(url);
-        logger.info("roles in secFilter: "+permissions.get(url));
-
-        if(roles != null){
-            logger.info("roles in secFilter: "+roles.toArray());
+        logger.info("roles in secFilter: " + permissions.get(url));
+        if (roles != null) {
+            logger.info("roles in secFilter: " + roles.toArray());
             HttpSession session = httpServletRequest.getSession(false);
-            if(session != null){
+            if (session != null) {
                 RegisteredUser user = (RegisteredUser) session.getAttribute("currentUser");
-                logger.info("user in secFilter: "+user);
-                if(user != null && roles.contains(user.getRole())){
-                    logger.info("will do process for userRole: "+user.getRole());
+                logger.info("user in secFilter: " + user);
+                if (user != null && roles.contains(user.getRole())) {
+                    logger.info("will do process for userRole: " + user.getRole());
                     filterChain.doFilter(httpServletRequest, httpServletResponse);
-
                     return;
                 }
             }
         } else {
             logger.info("block else filterChain.doFilter(httpServletRequest,httpServletResponse); ");
-            filterChain.doFilter(httpServletRequest,httpServletResponse);
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
-        logger.info("roles in secFilter: "+roles.toArray());
+        logger.info("roles in secFilter: " + roles.toArray());
 
         httpServletResponse.sendRedirect(context + "/login?message=you do not have enough permissions");
     }

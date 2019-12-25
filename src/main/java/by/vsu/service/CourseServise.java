@@ -13,7 +13,7 @@ public interface CourseServise {
 
     void save(Course course) throws ServiceException;
 
-    void delete(Long id) throws  ServiceException;
+    void delete(Long id) throws ServiceException;
 
     List<Course> findAll() throws ServiceException;
 

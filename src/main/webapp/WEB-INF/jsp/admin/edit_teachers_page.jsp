@@ -19,7 +19,7 @@
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#addteacher">
             add teacher
         </button>
-        <form action="${pageContext.request.contextPath}/admin/addteacher" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/add_teacher" method="POST">
         <div class="modal fade" id="addteacher" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -35,11 +35,11 @@
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">first name</label>
-                                <textarea class="form-control" name="first_name" id="exampleFormControlTextarea1" rows="1" required></textarea>
+                                <input type="text" class="form-control" name="first_name" id="exampleFormControlTextarea1" rows="1" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">first name</label>
-                                <textarea class="form-control" name="last_name" id="exampleFormControlTextarea2" rows="1" required></textarea>
+                                <label for="exampleFormControlTextarea1">last name</label>
+                                <input type="text" class="form-control" name="last_name" id="exampleFormControlTextarea2" rows="1" required></input>
                             </div>
 
 
@@ -60,7 +60,7 @@
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#createteacheraccount">
             create teacher account
         </button>
-        <form action="${pageContext.request.contextPath}/admin/createteacheraccount" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/create_teacher_account" method="POST">
             <div class="modal fade" id="createteacheraccount" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -115,7 +115,7 @@
         </button>
 </c:if>
 
-        <form action="${pageContext.request.contextPath}/admin/removeteacher" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/remove_teacher" method="POST">
             <div class="modal fade" id="removeteacher" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -158,7 +158,7 @@
             remove teacher account
         </button>
 </c:if>
-        <form action="${pageContext.request.contextPath}/admin/removeteacheraccount" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/remove_teacher_account" method="POST">
             <div class="modal fade" id="removeteacheraccount" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

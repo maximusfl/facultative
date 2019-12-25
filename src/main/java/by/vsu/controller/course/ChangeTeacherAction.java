@@ -59,7 +59,7 @@ public class ChangeTeacherAction extends Action {
 
             request.setAttribute("teachers", teachers);
 
-            return new Forward("/admin/editsinglecourse");
+            return new Forward("/admin/edit_single_course");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

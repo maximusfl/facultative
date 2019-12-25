@@ -9,7 +9,7 @@
         only one who loves children more than anything else can be a teacher. If children annoy you, do something.
         to others, in our life there are a lot of opportunities to prove ourselves and assert ourselves.</p>
     <p class="lead">
-        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/allcourses" role="button">All courses</a>
+        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/all_courses" role="button">All courses</a>
     </p>
 </div>
 

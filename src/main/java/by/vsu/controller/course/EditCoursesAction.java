@@ -25,7 +25,7 @@ public class EditCoursesAction extends Action {
             List<Course> courses = service.findAll();
             request.setAttribute("courses", courses);
 
-            return new Forward("/admin/editcourses");
+            return new Forward("/admin/edit_courses");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

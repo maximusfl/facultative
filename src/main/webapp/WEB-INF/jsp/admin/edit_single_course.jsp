@@ -20,7 +20,7 @@
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#changeteacher">
             change teacher
         </button>
-        <form action="${pageContext.request.contextPath}/admin/changeteacher" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/change_teacher" method="POST">
             <div class="modal fade" id="changeteacher" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -57,7 +57,7 @@
         <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#addstudtocourse">
             add student
         </button>
-        <form action="${pageContext.request.contextPath}/admin/addstudtocourse" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/add_stud_to_course" method="POST">
             <div class="modal fade" id="addstudtocourse" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -102,7 +102,7 @@
             remove student
         </button>
         </c:if>
-        <form action="${pageContext.request.contextPath}/admin/delstudfromcourse" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/del_stud_from_course" method="POST">
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -143,7 +143,7 @@
                 remove course
             </button>
 
-        <form action="${pageContext.request.contextPath}/admin/removecourse" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/remove_course" method="POST">
             <div class="modal fade" id="removecourse" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

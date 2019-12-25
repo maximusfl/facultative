@@ -66,7 +66,7 @@ return new Forward("/error");
             }
         }
 
-        return new Forward("/admin/editcourses");
+        return new Forward("/admin/edit_courses");
     }
     }
 

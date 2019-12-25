@@ -24,7 +24,7 @@ public class AllCoursesAction extends Action {
                 CourseServise service = getServiceFactory().getCourseServise();
                 List<Course> courses = service.findAllWithTeachers();
                 request.setAttribute("courses", courses);
-                return new Forward("/allcourses");
+                return new Forward("/all_courses");
             } catch(FactoryException | ServiceException e) {
                 throw new ServletException(e);
             }

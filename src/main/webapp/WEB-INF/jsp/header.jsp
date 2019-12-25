@@ -30,7 +30,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active px-5">
-                <a class="nav-link" href="${pageContext.request.contextPath}/allcourses">all courses<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/all_courses">all courses<span
                         class="sr-only">(current)</span></a>
             </li>
 
@@ -38,11 +38,11 @@
             <c:if test="${sessionScope.currentUser.role == 'ADMIN'}">
                 <li class="nav-item active px-5">
                     <a class="nav-link"
-                       href="${pageContext.request.contextPath}/admin/editcourses">course-management</a>
+                       href="${pageContext.request.contextPath}/admin/edit_courses">course-management</a>
                 </li>
                 <li class="nav-item active px-5">
                     <a class="nav-link"
-                       href="${pageContext.request.contextPath}/admin/editteacherspage">teachers-management</a>
+                       href="${pageContext.request.contextPath}/admin/edit_teachers_page">teachers-management</a>
                 </li>
                 <li class="nav-item active px-5">
                     <a class="nav-link"

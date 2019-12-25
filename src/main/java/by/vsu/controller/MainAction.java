@@ -30,13 +30,13 @@ public class MainAction extends Action {
                     case ADMIN:
                         logger.info("case: admin");
                         request.setAttribute("role", user.getRole());
-                        return new Forward("/admin/adminhomepage");
+                        return new Forward("/admin/admin_home_page");
                     case TEACHER:
                         logger.info("case: teacher");
-                        return new Forward("/teacher/teacherhomepage");
+                        return new Forward("/teacher/teacher_home_page");
                     case STUDENT:
                         logger.info("case: student");
-                        return new Forward("/student/studenthomepage");
+                        return new Forward("/student/student_home_page");
 
                     default:
                         return new Forward("/login");

@@ -149,7 +149,7 @@
             educated people are very appreciated. People have ceased to appreciate the opportunity to receive it. This
             is of paramount importance.</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/allcourses" role="button">Learn
+            <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/all_courses" role="button">Learn
                 more</a>
         </p>
     </div>

@@ -36,7 +36,7 @@ public class EditTeachersAction extends Action {
                 request.setAttribute("teachersCount", teachers.size());
                 request.setAttribute("teacherAccountsCount",teacherAccounts.size());
 
-                return new Forward("/admin/editteacherspage");
+                return new Forward("/admin/edit_teachers_page");
             } catch(FactoryException | ServiceException e) {
                 throw new ServletException(e);
             }

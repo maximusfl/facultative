@@ -75,7 +75,7 @@ public class CreateTeacherAccount extends Action {
         } catch (FactoryException | ServiceException e) {
             throw new ServletException(e);
         }
-        return new Forward("/admin/editteacherspage");
+        return new Forward("/admin/edit_teachers_page");
 
     }
 }

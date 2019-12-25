@@ -43,7 +43,7 @@ public class RemoveCourseAction extends Action {
             List<Course> courses = courseServise.findAll();
             request.setAttribute("courses", courses);
 
-            return new Forward("/admin/editcourses");
+            return new Forward("/admin/edit_courses");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

@@ -70,7 +70,7 @@
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">balls</label>
-                                <textarea class="form-control" name="raiting" id="exampleFormControlTextarea1" rows="1" required></textarea>
+                                <input type="number" min="0" max="100" class="form-control" name="raiting" id="exampleFormControlTextarea1" rows="1" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">resume</label>

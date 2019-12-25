@@ -55,7 +55,7 @@ public class RemoveTeacherAccountAction extends Action {
             request.setAttribute("teacherAccountsCount",teacherAccounts.size());
 
 
-            return new Forward("/admin/editteacherspage");
+            return new Forward("/admin/edit_teachers_page");
 
 
         } catch(FactoryException | ServiceException e) {

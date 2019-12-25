@@ -29,7 +29,7 @@ public class AddCourseAction extends Action {
             logger.info("teachers list size:   "+teachers.size());
             request.setAttribute("teachers", teachers);
 
-            return new Forward("/admin/addcourse");
+            return new Forward("/admin/add_course");
         } catch(FactoryException | ServiceException e) {
             throw new ServletException(e);
         }

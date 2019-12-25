@@ -7,10 +7,10 @@
 </div>
 
 <p>
-    <a class="btn btn-outline-primary btn-lg btn-block" href="${pageContext.request.contextPath}/admin/editcourses" role="button">course managment</a>
+    <a class="btn btn-outline-primary btn-lg btn-block" href="${pageContext.request.contextPath}/admin/edit_courses" role="button">course managment</a>
 </p>
 <p>
-    <a class="btn btn-outline-primary btn-lg btn-block" href="${pageContext.request.contextPath}/admin/editteacherspage" role="button">teacher managment</a>
+    <a class="btn btn-outline-primary btn-lg btn-block" href="${pageContext.request.contextPath}/admin/edit_teachers_page" role="button">teacher managment</a>
 </p>
 
 <p>
